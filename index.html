@@ -1,670 +1,464 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Archit Mangrulkar, Systems Engineer & Researcher</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- ============================================================
+       REPLACE: Update title, description, and OG tags with your info
+       ============================================================ -->
+  <title>Archit Mangrulkar — C++ Engineer & Researcher</title>
+  <meta name="description" content="Portfolio of Archit Mangrulkar, C++ engineer specializing in computer vision and systems programming." />
 
-  :root {
-    --bg: #0d0d0d;
-    --surface: #141414;
-    --surface2: #1a1a1a;
-    --border: rgba(255,255,255,0.08);
-    --border-accent: rgba(255,255,255,0.15);
-    --text: #e8e8e8;
-    --text-muted: #888;
-    --text-dim: #555;
-    --accent: #c8ff4a;
-    --accent-dim: rgba(200,255,74,0.12);
-    --accent-border: rgba(200,255,74,0.3);
-    --font-body: 'Inter', sans-serif;
-    --font-mono: 'IBM Plex Mono', monospace;
-  }
+  <!-- Favicon: inline SVG, change the letter if you want -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230f0c29'/><text y='.9em' font-size='68' x='14' fill='%23a78bfa' font-family='monospace' font-weight='700'>A</text></svg>" />
 
-  html { scroll-behavior: smooth; }
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-body);
-    font-size: 15px;
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-  }
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-  a { color: inherit; text-decoration: none; }
-  a:hover { color: var(--accent); }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 1rem 2.5rem;
-    border-bottom: 1px solid var(--border);
-    background: rgba(13,13,13,0.85);
-    backdrop-filter: blur(12px);
-  }
-  .nav-logo {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    color: var(--accent);
-    letter-spacing: 0.05em;
-  }
-  .nav-links {
-    display: flex; gap: 2rem; list-style: none;
-  }
-  .nav-links a {
-    font-size: 13px; color: var(--text-muted);
-    letter-spacing: 0.03em; transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--text); }
-
-  /* ── LAYOUT ── */
-  .container { max-width: 860px; margin: 0 auto; padding: 0 2rem; }
-
-  section { padding: 6rem 0; border-bottom: 1px solid var(--border); }
-  section:last-child { border-bottom: none; }
-
-  .section-label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--accent);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 2.5rem;
-  }
-
-  /* ── HERO ── */
-  #hero {
-    padding-top: 10rem;
-    padding-bottom: 6rem;
-    border-bottom: 1px solid var(--border);
-  }
-  .hero-eyebrow {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--text-muted);
-    letter-spacing: 0.1em;
-    margin-bottom: 1.5rem;
-  }
-  h1 {
-    font-size: clamp(2.8rem, 6vw, 4.5rem);
-    font-weight: 300;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    margin-bottom: 1.5rem;
-    color: var(--text);
-  }
-  h1 span { color: var(--accent); }
-  .hero-desc {
-    font-size: 1rem;
-    color: var(--text-muted);
-    max-width: 540px;
-    line-height: 1.8;
-    margin-bottom: 2.5rem;
-  }
-  .hero-links {
-    display: flex; gap: 1rem; flex-wrap: wrap;
-  }
-  .btn {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    padding: 0.6rem 1.2rem;
-    font-size: 13px;
-    border: 1px solid var(--border-accent);
-    border-radius: 4px;
-    color: var(--text-muted);
-    transition: all 0.2s;
-    font-family: var(--font-mono);
-    letter-spacing: 0.03em;
-  }
-  .btn:hover { border-color: var(--accent-border); color: var(--accent); background: var(--accent-dim); }
-  .btn-primary {
-    background: var(--accent);
-    color: #0d0d0d;
-    border-color: var(--accent);
-    font-weight: 500;
-  }
-  .btn-primary:hover { background: #d8ff6a; border-color: #d8ff6a; color: #0d0d0d; }
-
-  /* ── STATS ── */
-  .stats-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    overflow: hidden;
-    margin-top: 3rem;
-  }
-  .stat {
-    background: var(--surface);
-    padding: 1.2rem 1.5rem;
-  }
-  .stat-num {
-    font-family: var(--font-mono);
-    font-size: 1.6rem;
-    font-weight: 500;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: 0.3rem;
-  }
-  .stat-label {
-    font-size: 11px;
-    color: var(--text-dim);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  /* ── EXPERIENCE ── */
-  .exp-item {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0;
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid var(--border);
-  }
-  .exp-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-
-  .exp-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 1rem;
-    margin-bottom: 0.4rem;
-    flex-wrap: wrap;
-  }
-  .exp-org {
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--text);
-  }
-  .exp-period {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--text-dim);
-    letter-spacing: 0.06em;
-    white-space: nowrap;
-    margin-top: 2px;
-  }
-  .exp-role {
-    font-size: 13px;
-    color: var(--accent);
-    font-family: var(--font-mono);
-    margin-bottom: 1rem;
-    letter-spacing: 0.03em;
-  }
-  .exp-bullets {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  .exp-bullets li {
-    font-size: 14px;
-    color: var(--text-muted);
-    padding-left: 1.2rem;
-    position: relative;
-    line-height: 1.6;
-  }
-  .exp-bullets li::before {
-    content: '→';
-    position: absolute; left: 0;
-    color: var(--text-dim);
-    font-size: 12px;
-  }
-
-  /* ── PROJECTS ── */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    overflow: hidden;
-  }
-  .project-card {
-    background: var(--surface);
-    padding: 1.75rem;
-    transition: background 0.2s;
-  }
-  .project-card:hover { background: var(--surface2); }
-  .project-title {
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--text);
-    margin-bottom: 0.8rem;
-  }
-  .project-desc {
-    font-size: 13px;
-    color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: 1rem;
-  }
-  .tags {
-    display: flex; flex-wrap: wrap; gap: 0.4rem;
-  }
-  .tag {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--text-dim);
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--border);
-    padding: 2px 7px;
-    border-radius: 3px;
-    letter-spacing: 0.04em;
-  }
-
-  /* ── PUBLICATIONS / PATENTS ── */
-  .pub-item {
-    padding: 1.5rem 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .pub-item:first-child { padding-top: 0; }
-  .pub-item:last-child { border-bottom: none; padding-bottom: 0; }
-  .pub-venue {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 0.3rem;
-  }
-  .pub-title {
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--text);
-    margin-bottom: 0.5rem;
-  }
-  .pub-desc {
-    font-size: 13px;
-    color: var(--text-muted);
-    line-height: 1.6;
-  }
-
-  /* ── SKILLS ── */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-  }
-  .skill-group-label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--text-dim);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 0.75rem;
-  }
-  .skill-list {
-    display: flex; flex-wrap: wrap; gap: 0.4rem;
-  }
-  .skill-pill {
-    font-size: 12px;
-    color: var(--text-muted);
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 4px 10px;
-    border-radius: 3px;
-  }
-
-  /* ── ACHIEVEMENTS ── */
-  .ach-list {
-    display: flex; flex-direction: column; gap: 1rem;
-  }
-  .ach-item {
-    display: flex; gap: 1rem; align-items: flex-start;
-  }
-  .ach-marker {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--accent);
-    min-width: 16px;
-    margin-top: 2px;
-  }
-  .ach-text {
-    font-size: 14px;
-    color: var(--text-muted);
-    line-height: 1.6;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    padding: 2.5rem 0;
-    text-align: center;
-  }
-  .footer-text {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--text-dim);
-    letter-spacing: 0.06em;
-  }
-
-  @media (max-width: 600px) {
-    nav { padding: 1rem 1.25rem; }
-    .nav-links { display: none; }
-    .container { padding: 0 1.25rem; }
-    section { padding: 4rem 0; }
-    .projects-grid { grid-template-columns: 1fr; }
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .fade-in {
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-    .fade-in.visible { opacity: 1; transform: none; }
-  }
-</style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo">AM_</div>
-  <ul class="nav-links">
-    <li><a href="#experience">experience</a></li>
-    <li><a href="#projects">projects</a></li>
-    <li><a href="#research">research</a></li>
-    <li><a href="#skills">skills</a></li>
-    <li><a href="#achievements">achievements</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<section id="hero">
-  <div class="container">
-    <p class="hero-eyebrow">// IIT Kharagpur · B.Tech CSE · CGPA 8.57</p>
-    <h1>Archit<br><span>Mangrulkar</span></h1>
-    <p class="hero-desc">
-      Systems engineer building production camera pipelines at Samsung Research. I work at the intersection of computer vision, low-level C++, and applied ML from 8K HDR video stabilization to edge-deployed neural networks.
-    </p>
-    <div class="hero-links">
-      <a href="mailto:archit.mangrulkar@gmail.com" class="btn btn-primary">archit.mangrulkar@gmail.com</a>
-      <a href="https://github.com/architmang" class="btn" target="_blank" rel="noopener">GitHub ↗</a>
-      <a href="https://www.linkedin.com/in/archit-mangrulkar-033327199/" class="btn" target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a href="https://codeforces.com" class="btn" target="_blank" rel="noopener">CodeForces ↗</a>
-    </div>
-
-    <div class="stats-row fade-in">
-      <div class="stat">
-        <div class="stat-num">2+</div>
-        <div class="stat-label">years industry</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">1</div>
-        <div class="stat-label">patent pending</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">2</div>
-        <div class="stat-label">publications</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">AIR 978</div>
-        <div class="stat-label">JEE Advanced</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">2× 🥇🥈</div>
-        <div class="stat-label">inter IIT medals</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="container">
-    <p class="section-label">// 01 experience</p>
-
-    <div class="exp-item fade-in">
-      <div class="exp-header">
-        <div class="exp-org">Samsung Research India, Bangalore</div>
-        <div class="exp-period">Jul 2024 – Present</div>
-      </div>
-      <div class="exp-role">C++ Developer · Visual Intelligence Team</div>
-      <ul class="exp-bullets">
-        <li>Commercialized Video Stabilization, QuickTake, Hyperlapse & Astrolapse on Samsung's flagship S series smartphones.</li>
-        <li>Mainlined camera pipelines for 60 fps video with a 16.67 ms frame window and support for 8K capture with 10-bit HDR.</li>
-        <li>Leveraged ARM-specific SIMD, OpenCL optimizations, and supported gyro sensor listener sampling at 526 microseconds.</li>
+  <!-- ===================== NAV ===================== -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <!-- REPLACE: your initials or logo text -->
+      <a href="#hero" class="nav-logo">AM<span class="accent">.</span></a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
+      <!-- REPLACE: link to your actual resume PDF -->
+      <a href="resume.pdf" download class="nav-resume-btn">
+        <i class="fa-solid fa-download"></i> Resume
+      </a>
+      <button class="nav-hamburger" aria-label="Open menu" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+  </nav>
 
-    <div class="exp-item fade-in">
-      <div class="exp-header">
-        <div class="exp-org">Vision & Learning Lab, University of Alberta</div>
-        <div class="exp-period">May 2023 – Aug 2023</div>
-      </div>
-      <div class="exp-role">Research Intern · Multimodal Motion Capture · MITACS Scholarship</div>
-      <ul class="exp-bullets">
-        <li>Developed a large-scale multimodal dataset of humans in the wild RGBD images, eye-tracking, and speech data.</li>
-        <li>Built a multithreaded C++ server and PyQt5 GUI client for concurrent synchronized image capture.</li>
-        <li>Designed a 3D human pose tracking and clustering module for multi-view images using YOLOv5, DeepSORT, and DBSCAN.</li>
-      </ul>
-    </div>
-
-    <div class="exp-item fade-in">
-      <div class="exp-header">
-        <div class="exp-org">Chair of Processor Design, TU Dresden</div>
-        <div class="exp-period">May 2022 – Jul 2022</div>
-      </div>
-      <div class="exp-role">Research Intern · Approximate Computing in Neural Networks · Erasmus+ Scholarship</div>
-      <ul class="exp-bullets">
-        <li>Designed neural operators as C static libraries for fast 8-bit FPGA inference with TensorFlow Lite.</li>
-        <li>Explored cross-layer granularity combining signed 8-bit lookup tables, polynomial regression, and EvoApproxLib multipliers.</li>
-        <li>Reduced inference time by 2× using OpenMP multithreading, autovectorization, and cache optimizations.</li>
-      </ul>
-    </div>
+  <!-- Mobile menu drawer -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" id="mobileClose"><i class="fa-solid fa-xmark"></i></button>
+    <ul>
+      <li><a href="#about" class="mobile-link">About</a></li>
+      <li><a href="#skills" class="mobile-link">Skills</a></li>
+      <li><a href="#projects" class="mobile-link">Projects</a></li>
+      <li><a href="#contact" class="mobile-link">Contact</a></li>
+    </ul>
+    <a href="resume.pdf" download class="btn-primary" style="margin-top:2rem;">
+      <i class="fa-solid fa-download"></i> Download Resume
+    </a>
   </div>
-</section>
+  <div class="mobile-overlay" id="mobileOverlay"></div>
 
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="container">
-    <p class="section-label">// 02 projects</p>
-    <div class="projects-grid">
-      <div class="project-card fade-in">
-        <div class="project-title">Kalman Filter for Equity Pairs Trading</div>
-        <div class="project-desc">Kalman Filter pairs-trading system estimating hedge ratio every 10 ms, driving 15–22% annualized returns. Reduced drawdowns by 30% using smoothed Avg-Cov-Div signals, suppressing false positives.</div>
-        <div class="tags">
-          <span class="tag">Kalman Filter</span>
-          <span class="tag">Time Series</span>
-          <span class="tag">Rolling OLS</span>
-          <span class="tag">Backtesting</span>
+  <!-- ===================== HERO ===================== -->
+  <section id="hero">
+    <!-- Animated canvas background -->
+    <canvas id="heroCanvas"></canvas>
+
+    <div class="hero-content">
+      <div class="hero-text">
+        <p class="hero-eyebrow">
+          <span class="dot"></span> Available for opportunities
+        </p>
+        <!-- REPLACE: your name -->
+        <h1 class="hero-name">Archit <span class="accent">Mangrulkar</span></h1>
+        <div class="hero-typewriter">
+          <!-- Typewriter text is injected by script.js -->
+          I'm a <span id="typewriter-text"></span><span class="cursor">|</span>
+        </div>
+        <p class="hero-bio">
+          <!-- REPLACE: your one-liner -->
+          C++ engineer at Samsung Research shipping camera pipelines to millions of Galaxy phones. IIT Kharagpur CSE, CGPA 8.57.
+        </p>
+        <div class="hero-actions">
+          <!-- REPLACE: resume.pdf with your actual file -->
+          <a href="resume.pdf" download class="btn-primary">
+            <i class="fa-solid fa-download"></i> Download Resume
+          </a>
+          <a href="#projects" class="btn-ghost">View Projects</a>
+        </div>
+        <div class="hero-socials">
+          <!-- REPLACE: all href values with your own links -->
+          <a href="https://github.com/architmang" target="_blank" rel="noopener" aria-label="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/archit-mangrulkar-033327199/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+          <a href="mailto:archit.mangrulkar@gmail.com" aria-label="Email">
+            <i class="fa-solid fa-envelope"></i>
+          </a>
+          <a href="https://codeforces.com" target="_blank" rel="noopener" aria-label="CodeForces">
+            <i class="fa-solid fa-code"></i>
+          </a>
         </div>
       </div>
-      <div class="project-card fade-in">
-        <div class="project-title">ARMA-based Trading Strategy</div>
-        <div class="project-desc">Time Series ARMA model on AAPL with RSI, MACD via BackTrader. Achieved a Sharpe ratio of 1.5 and 10% gain in maximum profit; increased profits by 23% with volatility assessment against S&P 500 via ARCH.</div>
-        <div class="tags">
-          <span class="tag">ARMA</span>
-          <span class="tag">ARCH</span>
-          <span class="tag">BackTrader</span>
-          <span class="tag">MACD</span>
-        </div>
-      </div>
-      <div class="project-card fade-in">
-        <div class="project-title">SQL Query Rewriter Tool</div>
-        <div class="project-desc">Streamlit web app for compiling and optimizing relational algebra queries. Lex & Yacc lexer/parser with a C++ query-tree representation achieving a 3× speedup in processing time.</div>
-        <div class="tags">
-          <span class="tag">C++</span>
-          <span class="tag">Lex & Yacc</span>
-          <span class="tag">Streamlit</span>
-          <span class="tag">Relational Algebra</span>
-        </div>
-      </div>
-      <div class="project-card fade-in">
-        <div class="project-title">Unix Shell & IPC</div>
-        <div class="project-desc">Robust Unix shell in C++ with process execution, I/O redirection, piping, and command history. Signal handlers and a custom squashbug malware-detection feature. Shared-memory graph with Dijkstra's shortest path.</div>
-        <div class="tags">
-          <span class="tag">C++</span>
-          <span class="tag">Unix</span>
-          <span class="tag">IPC</span>
-          <span class="tag">Shared Memory</span>
-        </div>
-      </div>
-      <div class="project-card fade-in">
-        <div class="project-title">MyHTTP TCP Browser</div>
-        <div class="project-desc">Concurrent CLI browser for file retrieval from HTTP/HTTPS servers using OpenSSL for secure sockets. HTTP 1.1 server handling GET/PUT for PDFs, TXTs, and JPGs with access logging.</div>
-        <div class="tags">
-          <span class="tag">C++</span>
-          <span class="tag">HTTP 1.1</span>
-          <span class="tag">OpenSSL</span>
-          <span class="tag">Networking</span>
+
+      <div class="hero-avatar-wrap">
+        <!-- REPLACE: swap src with your actual photo, e.g. src="images/profile.jpg"
+             Current: https://i.pravatar.cc/300?img=11 (random avatar placeholder) -->
+        <div class="avatar-glow"></div>
+        <img
+          src="https://i.pravatar.cc/300?img=11"
+          alt="Archit Mangrulkar"
+          class="hero-avatar"
+        />
+        <div class="avatar-badge">
+          <i class="fa-solid fa-circle-check"></i> IIT Kharagpur
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- RESEARCH -->
-<section id="research">
-  <div class="container">
-    <p class="section-label">// 03 research & patents</p>
-
-    <div class="pub-item fade-in">
-      <div class="pub-venue">Patent Pending</div>
-      <div class="pub-title">Geometrically Consistent Multi-Camera Stabilization for XR Headsets</div>
-      <div class="pub-desc">Co-invented an AI-driven multi-camera stabilization method enforcing geometric consistency for improved visual experience in XR. Solved AR world-anchor loss during rapid head motion through reinforcement learning. Analyzed stabilization pipelines of Apple, Meta, and Xreal to shape novel claims.</div>
+    <div class="hero-scroll-hint">
+      <span>scroll</span>
+      <i class="fa-solid fa-chevron-down"></i>
     </div>
+  </section>
 
-    <div class="pub-item fade-in">
-      <div class="pub-venue">ECCV 2026 · Under Submission</div>
-      <div class="pub-title">Real-World Video Representation Learning (VRL)</div>
-      <div class="pub-desc">Deployed a multi-branch video stability model in C++/ONNX runtime achieving a 15× speedup over Python baseline. Slashed model size by 72% via static INT8 quantization; replaced RAFT optical flow with NeuFlow v2 demonstrating 44× FLOPS reduction for edge deployment.</div>
-    </div>
-
-    <div class="pub-item fade-in">
-      <div class="pub-venue">COLING 2022 · Workshop Paper</div>
-      <div class="pub-title">Social Media Mining for Health: Stance &amp; Premise Detection</div>
-      <div class="pub-desc">Predicted stance and premise in COVID tweets using BERT, RoBERTa, BART, and DeBERTa. Incorporated dependency parse trees, POS tags, and TF-IDF for syntactic and semantic overlap. Supervised contrastive loss beat the baseline by 40%, achieving first place on the leaderboard.</div>
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="container">
-    <p class="section-label">// 04 skills</p>
-    <div class="skills-grid">
-      <div class="fade-in">
-        <div class="skill-group-label">Languages</div>
-        <div class="skill-list">
-          <span class="skill-pill">C++</span>
-          <span class="skill-pill">C</span>
-          <span class="skill-pill">Python</span>
-          <span class="skill-pill">SQL</span>
+  <!-- ===================== ABOUT ===================== -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-label">About me</div>
+      <h2 class="section-title">The story so far</h2>
+      <div class="about-grid">
+        <div class="about-text glass-card">
+          <!-- REPLACE: your actual bio paragraphs -->
+          <p>I build production camera software at Samsung Research Bangalore that ships on Galaxy S-series flagships. My work spans 60 fps stabilized video pipelines, 8K HDR capture, and ARM SIMD/OpenCL optimizations running at sub-millisecond latency.</p>
+          <p>Before Samsung, I did research stints at the University of Alberta (MITACS Scholar, 2023) building multimodal motion capture systems, and at TU Dresden (Erasmus+ Scholar, 2022) working on approximate computing for FPGA neural network inference.</p>
+          <p>I'm drawn to the layer of software where math meets metal. Whether that's a Kalman filter tracking hedge ratios at 10 ms or a quantized neural net running on a phone's NPU, I care about making things fast, correct, and shipped.</p>
         </div>
-      </div>
-      <div class="fade-in">
-        <div class="skill-group-label">CV & ML</div>
-        <div class="skill-list">
-          <span class="skill-pill">OpenCV</span>
-          <span class="skill-pill">TensorFlow Lite</span>
-          <span class="skill-pill">ONNX Runtime</span>
-          <span class="skill-pill">YOLOv5</span>
-          <span class="skill-pill">DeepSORT</span>
-          <span class="skill-pill">RAFT / NeuFlow</span>
-        </div>
-      </div>
-      <div class="fade-in">
-        <div class="skill-group-label">Systems & HPC</div>
-        <div class="skill-list">
-          <span class="skill-pill">ARM SIMD</span>
-          <span class="skill-pill">OpenCL</span>
-          <span class="skill-pill">OpenMP</span>
-          <span class="skill-pill">FPGA / TFLite</span>
-          <span class="skill-pill">INT8 Quantization</span>
-        </div>
-      </div>
-      <div class="fade-in">
-        <div class="skill-group-label">Tools & Frameworks</div>
-        <div class="skill-list">
-          <span class="skill-pill">PyQt5</span>
-          <span class="skill-pill">Streamlit</span>
-          <span class="skill-pill">BackTrader</span>
-          <span class="skill-pill">Lex & Yacc</span>
-          <span class="skill-pill">OpenSSL</span>
-          <span class="skill-pill">DBSCAN</span>
-        </div>
-      </div>
-      <div class="fade-in">
-        <div class="skill-group-label">NLP & Transformers</div>
-        <div class="skill-list">
-          <span class="skill-pill">BERT</span>
-          <span class="skill-pill">RoBERTa</span>
-          <span class="skill-pill">BART</span>
-          <span class="skill-pill">DeBERTa</span>
-          <span class="skill-pill">GPT-3</span>
+        <div class="about-stats">
+          <!-- REPLACE: numbers and labels with your own -->
+          <div class="stat-card glass-card">
+            <span class="stat-n">2+</span>
+            <span class="stat-l">Years at Samsung</span>
+          </div>
+          <div class="stat-card glass-card">
+            <span class="stat-n">1</span>
+            <span class="stat-l">Patent pending</span>
+          </div>
+          <div class="stat-card glass-card">
+            <span class="stat-n">2</span>
+            <span class="stat-l">Publications</span>
+          </div>
+          <div class="stat-card glass-card">
+            <span class="stat-n">AIR 978</span>
+            <span class="stat-l">JEE Advanced 2020</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ACHIEVEMENTS -->
-<section id="achievements">
-  <div class="container">
-    <p class="section-label">// 05 achievements</p>
-    <div class="ach-list">
-      <div class="ach-item fade-in">
-        <div class="ach-marker">★</div>
-        <div class="ach-text"><strong>Gold Medal,</strong> DRDO's UAV Guided UGV Navigation Challenge, Inter IIT Tech Meet 10.0</div>
-      </div>
-      <div class="ach-item fade-in">
-        <div class="ach-marker">★</div>
-        <div class="ach-text"><strong>Silver Medal,</strong> DevRev Closed Domain QA Challenge, Inter IIT Tech Meet 11.0</div>
-      </div>
-      <div class="ach-item fade-in">
-        <div class="ach-marker">→</div>
-        <div class="ach-text">Offered department transfer to B.Tech CSE at IIT Kharagpur, ranked among top 16 of 1800 students with a 10.0 CGPA.</div>
-      </div>
-      <div class="ach-item fade-in">
-        <div class="ach-marker">→</div>
-        <div class="ach-text"><strong>MITACS Scholarship 2023,</strong> University of Alberta, Canada.</div>
-      </div>
-      <div class="ach-item fade-in">
-        <div class="ach-marker">→</div>
-        <div class="ach-text"><strong>Erasmus+ Scholarship 2022,</strong> TU Dresden, Germany.</div>
-      </div>
-      <div class="ach-item fade-in">
-        <div class="ach-marker">→</div>
-        <div class="ach-text">Secured AIR 978 out of 150,000 candidates in JEE Advanced 2020.</div>
-      </div>
-      <div class="ach-item fade-in">
-        <div class="ach-marker">→</div>
-        <div class="ach-text">Secured AIR 1517 out of 929,000 candidates in JEE Mains 2020.</div>
-      </div>
-      <div class="ach-item fade-in">
-        <div class="ach-marker">→</div>
-        <div class="ach-text">Workshop paper on Stance & Premise Detection accepted at International Conference on Computational Linguistics (COLING 2022).</div>
+  <!-- ===================== SKILLS ===================== -->
+  <section id="skills" class="section">
+    <div class="container">
+      <div class="section-label">What I work with</div>
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-groups">
+
+        <!-- REPLACE: add/remove skill groups and pills as needed -->
+        <div class="skill-group glass-card">
+          <div class="sg-header">
+            <i class="fa-solid fa-terminal"></i>
+            <span>Languages</span>
+          </div>
+          <div class="pills">
+            <span class="pill">C++</span>
+            <span class="pill">C</span>
+            <span class="pill">Python</span>
+            <span class="pill">SQL</span>
+          </div>
+        </div>
+
+        <div class="skill-group glass-card">
+          <div class="sg-header">
+            <i class="fa-solid fa-eye"></i>
+            <span>Computer Vision</span>
+          </div>
+          <div class="pills">
+            <span class="pill">OpenCV</span>
+            <span class="pill">YOLOv5</span>
+            <span class="pill">DeepSORT</span>
+            <span class="pill">RAFT</span>
+            <span class="pill">NeuFlow v2</span>
+          </div>
+        </div>
+
+        <div class="skill-group glass-card">
+          <div class="sg-header">
+            <i class="fa-solid fa-microchip"></i>
+            <span>Performance</span>
+          </div>
+          <div class="pills">
+            <span class="pill">ARM SIMD</span>
+            <span class="pill">OpenCL</span>
+            <span class="pill">OpenMP</span>
+            <span class="pill">FPGA inference</span>
+            <span class="pill">Autovectorization</span>
+          </div>
+        </div>
+
+        <div class="skill-group glass-card">
+          <div class="sg-header">
+            <i class="fa-solid fa-brain"></i>
+            <span>ML Runtime</span>
+          </div>
+          <div class="pills">
+            <span class="pill">ONNX Runtime</span>
+            <span class="pill">TFLite</span>
+            <span class="pill">INT8 Quantization</span>
+          </div>
+        </div>
+
+        <div class="skill-group glass-card">
+          <div class="sg-header">
+            <i class="fa-solid fa-comment-dots"></i>
+            <span>NLP</span>
+          </div>
+          <div class="pills">
+            <span class="pill">BERT</span>
+            <span class="pill">RoBERTa</span>
+            <span class="pill">BART</span>
+            <span class="pill">DeBERTa</span>
+            <span class="pill">GPT-3</span>
+          </div>
+        </div>
+
+        <div class="skill-group glass-card">
+          <div class="sg-header">
+            <i class="fa-solid fa-wrench"></i>
+            <span>Tools</span>
+          </div>
+          <div class="pills">
+            <span class="pill">PyQt5</span>
+            <span class="pill">Streamlit</span>
+            <span class="pill">BackTrader</span>
+            <span class="pill">OpenSSL</span>
+            <span class="pill">Lex &amp; Yacc</span>
+          </div>
+        </div>
+
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <div class="container">
-    <p class="footer-text">archit mangrulkar · bangalore, india · archit.mangrulkar@gmail.com</p>
-  </div>
-</footer>
+  <!-- ===================== PROJECTS ===================== -->
+  <section id="projects" class="section">
+    <div class="container">
+      <div class="section-label">Things I've built</div>
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-grid">
 
-<script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-</script>
+        <!-- ── PROJECT CARD ──
+             REPLACE each card:
+               - img src: swap picsum URL for your screenshot, e.g. src="images/proj1.png"
+               - .proj-title: project name
+               - .proj-desc: 2-sentence description
+               - .pill tags
+               - href on both buttons (GitHub repo and live demo)
+        -->
+
+        <article class="proj-card glass-card">
+          <div class="proj-img-wrap">
+            <img src="https://picsum.photos/600/340?random=10" alt="Kalman Filter Trading" class="proj-img" loading="lazy" />
+            <div class="proj-img-overlay">
+              <a href="https://github.com/architmang" target="_blank" rel="noopener" class="overlay-btn"><i class="fa-brands fa-github"></i> Code</a>
+              <!-- REPLACE: live demo link, or remove this button -->
+              <a href="#" class="overlay-btn overlay-btn-accent"><i class="fa-solid fa-arrow-up-right-from-square"></i> Demo</a>
+            </div>
+          </div>
+          <div class="proj-body">
+            <h3 class="proj-title">Kalman Filter Pairs Trading</h3>
+            <p class="proj-desc">Pairs-trading engine estimating hedge ratio every 10 ms. Achieves 15-22% annualized returns with drawdowns cut 30% via smoothed Avg-Cov-Div signals and sub-millisecond Kalman update cycles.</p>
+            <div class="pills proj-stack">
+              <span class="pill pill-sm">Kalman Filter</span>
+              <span class="pill pill-sm">Rolling OLS</span>
+              <span class="pill pill-sm">Python</span>
+              <span class="pill pill-sm">Backtesting</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="proj-card glass-card">
+          <div class="proj-img-wrap">
+            <img src="https://picsum.photos/600/340?random=20" alt="SQL Query Rewriter" class="proj-img" loading="lazy" />
+            <div class="proj-img-overlay">
+              <a href="https://github.com/architmang" target="_blank" rel="noopener" class="overlay-btn"><i class="fa-brands fa-github"></i> Code</a>
+              <a href="#" class="overlay-btn overlay-btn-accent"><i class="fa-solid fa-arrow-up-right-from-square"></i> Demo</a>
+            </div>
+          </div>
+          <div class="proj-body">
+            <h3 class="proj-title">SQL Query Rewriter</h3>
+            <p class="proj-desc">Streamlit app for real-time relational algebra query compilation and optimization. Lex &amp; Yacc lexer/parser with a C++ query-tree engine achieving a 3x speedup over naive evaluation.</p>
+            <div class="pills proj-stack">
+              <span class="pill pill-sm">C++</span>
+              <span class="pill pill-sm">Lex &amp; Yacc</span>
+              <span class="pill pill-sm">Streamlit</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="proj-card glass-card">
+          <div class="proj-img-wrap">
+            <img src="https://picsum.photos/600/340?random=30" alt="Unix Shell IPC" class="proj-img" loading="lazy" />
+            <div class="proj-img-overlay">
+              <a href="https://github.com/architmang" target="_blank" rel="noopener" class="overlay-btn"><i class="fa-brands fa-github"></i> Code</a>
+              <a href="#" class="overlay-btn overlay-btn-accent"><i class="fa-solid fa-arrow-up-right-from-square"></i> Demo</a>
+            </div>
+          </div>
+          <div class="proj-body">
+            <h3 class="proj-title">Unix Shell and IPC</h3>
+            <p class="proj-desc">Full Unix shell in C++ with I/O redirection, piping, and command history. Custom squashbug malware-detection feature and a shared-memory graph with 3x-optimized Dijkstra's shortest path.</p>
+            <div class="pills proj-stack">
+              <span class="pill pill-sm">C++</span>
+              <span class="pill pill-sm">Unix</span>
+              <span class="pill pill-sm">Shared Memory</span>
+              <span class="pill pill-sm">IPC</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="proj-card glass-card">
+          <div class="proj-img-wrap">
+            <img src="https://picsum.photos/600/340?random=40" alt="ARMA Trading" class="proj-img" loading="lazy" />
+            <div class="proj-img-overlay">
+              <a href="https://github.com/architmang" target="_blank" rel="noopener" class="overlay-btn"><i class="fa-brands fa-github"></i> Code</a>
+              <a href="#" class="overlay-btn overlay-btn-accent"><i class="fa-solid fa-arrow-up-right-from-square"></i> Demo</a>
+            </div>
+          </div>
+          <div class="proj-body">
+            <h3 class="proj-title">ARMA Trading Strategy</h3>
+            <p class="proj-desc">Time Series ARMA model on AAPL via BackTrader. Sharpe ratio of 1.5, 10% max-profit gain. 23% profit increase with RSI/MACD indicators; volatility benchmarked against S&amp;P 500 with ARCH.</p>
+            <div class="pills proj-stack">
+              <span class="pill pill-sm">ARMA</span>
+              <span class="pill pill-sm">ARCH</span>
+              <span class="pill pill-sm">BackTrader</span>
+              <span class="pill pill-sm">MACD</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="proj-card glass-card">
+          <div class="proj-img-wrap">
+            <img src="https://picsum.photos/600/340?random=50" alt="MyHTTP Browser" class="proj-img" loading="lazy" />
+            <div class="proj-img-overlay">
+              <a href="https://github.com/architmang" target="_blank" rel="noopener" class="overlay-btn"><i class="fa-brands fa-github"></i> Code</a>
+              <a href="#" class="overlay-btn overlay-btn-accent"><i class="fa-solid fa-arrow-up-right-from-square"></i> Demo</a>
+            </div>
+          </div>
+          <div class="proj-body">
+            <h3 class="proj-title">MyHTTP TCP Browser</h3>
+            <p class="proj-desc">Concurrent CLI browser for HTTP/HTTPS file retrieval using OpenSSL secure sockets. Implements an HTTP 1.1 server with GET/PUT support, access logging, and proper status-code handling.</p>
+            <div class="pills proj-stack">
+              <span class="pill pill-sm">C++</span>
+              <span class="pill pill-sm">HTTP 1.1</span>
+              <span class="pill pill-sm">OpenSSL</span>
+              <span class="pill pill-sm">Networking</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- ADD MORE CARDS HERE following the same pattern -->
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="section-label">Get in touch</div>
+      <h2 class="section-title">Let's work together</h2>
+      <div class="contact-grid">
+
+        <div class="contact-info">
+          <p class="contact-blurb">
+            <!-- REPLACE: your availability / pitch -->
+            Open to full-time roles, research collaborations, and conversations about computer vision, systems programming, or algorithmic trading.
+          </p>
+          <ul class="contact-details">
+            <!-- REPLACE: all contact values -->
+            <li>
+              <i class="fa-solid fa-envelope"></i>
+              <a href="mailto:archit.mangrulkar@gmail.com">archit.mangrulkar@gmail.com</a>
+            </li>
+            <li>
+              <i class="fa-solid fa-location-dot"></i>
+              <span>Bangalore, India</span>
+            </li>
+            <li>
+              <i class="fa-brands fa-github"></i>
+              <a href="https://github.com/architmang" target="_blank" rel="noopener">github.com/architmang</a>
+            </li>
+            <li>
+              <i class="fa-brands fa-linkedin"></i>
+              <a href="https://www.linkedin.com/in/archit-mangrulkar-033327199/" target="_blank" rel="noopener">linkedin.com/in/archit-mangrulkar</a>
+            </li>
+          </ul>
+          <!-- REPLACE: resume.pdf with your file -->
+          <a href="resume.pdf" download class="btn-primary" style="margin-top:1.75rem; display:inline-flex;">
+            <i class="fa-solid fa-download"></i> Download Resume
+          </a>
+        </div>
+
+        <!--
+          REPLACE: change the action URL to your actual Formspree endpoint.
+          Sign up at https://formspree.io, create a form, and replace
+          "your-form-id" with the ID Formspree gives you.
+        -->
+        <form class="contact-form glass-card" action="https://formspree.io/f/your-form-id" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">Name</label>
+              <input type="text" id="fname" name="name" placeholder="Jane Smith" required />
+            </div>
+            <div class="form-group">
+              <label for="femail">Email</label>
+              <input type="email" id="femail" name="email" placeholder="jane@example.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="fsubject">Subject</label>
+            <input type="text" id="fsubject" name="subject" placeholder="Collaboration opportunity" />
+          </div>
+          <div class="form-group">
+            <label for="fmessage">Message</label>
+            <textarea id="fmessage" name="message" rows="5" placeholder="Tell me about the project or role..." required></textarea>
+          </div>
+          <button type="submit" class="btn-primary btn-full">
+            <i class="fa-solid fa-paper-plane"></i> Send message
+          </button>
+          <p class="form-note">Powered by <a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a>. Replace the action URL with your own endpoint.</p>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div class="container footer-inner">
+      <!-- REPLACE: your name and year -->
+      <p>&copy; 2025 Archit Mangrulkar. Built with HTML, CSS, and vanilla JS.</p>
+      <div class="footer-socials">
+        <a href="https://github.com/architmang" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/archit-mangrulkar-033327199/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="mailto:archit.mangrulkar@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
