@@ -1,464 +1,359 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- ============================================================
-       REPLACE: Update title, description, and OG tags with your info
-       ============================================================ -->
-  <title>Archit Mangrulkar — C++ Engineer & Researcher</title>
-  <meta name="description" content="Portfolio of Archit Mangrulkar, C++ engineer specializing in computer vision and systems programming." />
-
-  <!-- Favicon: inline SVG, change the letter if you want -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230f0c29'/><text y='.9em' font-size='68' x='14' fill='%23a78bfa' font-family='monospace' font-weight='700'>A</text></svg>" />
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Archit Mangrulkar</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='4' fill='%23000'/><text y='.9em' font-size='68' x='14' fill='%23fff' font-family='serif' font-weight='900'>A</text></svg>"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-  <!-- ===================== NAV ===================== -->
-  <nav id="navbar">
-    <div class="nav-inner">
-      <!-- REPLACE: your initials or logo text -->
-      <a href="#hero" class="nav-logo">AM<span class="accent">.</span></a>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <!-- REPLACE: link to your actual resume PDF -->
-      <a href="resume.pdf" download class="nav-resume-btn">
-        <i class="fa-solid fa-download"></i> Resume
-      </a>
-      <button class="nav-hamburger" aria-label="Open menu" id="hamburger">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
+<div id="cursor"></div>
+<div id="cursor-follower"></div>
 
-  <!-- Mobile menu drawer -->
-  <div class="mobile-menu" id="mobileMenu">
-    <button class="mobile-close" id="mobileClose"><i class="fa-solid fa-xmark"></i></button>
-    <ul>
-      <li><a href="#about" class="mobile-link">About</a></li>
-      <li><a href="#skills" class="mobile-link">Skills</a></li>
-      <li><a href="#projects" class="mobile-link">Projects</a></li>
-      <li><a href="#contact" class="mobile-link">Contact</a></li>
-    </ul>
-    <a href="resume.pdf" download class="btn-primary" style="margin-top:2rem;">
-      <i class="fa-solid fa-download"></i> Download Resume
-    </a>
+<div id="visitor-badge" title="Total page views">
+  <i class="fa-regular fa-eye"></i>
+  <span id="visitor-count">...</span>
+</div>
+
+<nav id="nav">
+  <a href="#" class="nav-logo" data-tab="home">AM</a>
+  <ul class="nav-links">
+    <li><a data-tab="home"       href="#">Home</a></li>
+    <li><a data-tab="experience" href="#">Experience</a></li>
+    <li><a data-tab="projects"   href="#">Projects</a></li>
+    <li><a data-tab="research"   href="#">Research</a></li>
+    <li><a data-tab="skills"     href="#">Skills</a></li>
+    <li><a data-tab="blog"       href="#">Blog</a></li>
+    <li><a data-tab="cv"         href="#">CV</a></li>
+    <li><a data-tab="contact"    href="#">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span></button>
+</nav>
+
+<div class="drawer" id="drawer">
+  <button class="drawer-close" id="drawerClose"><i class="fa-solid fa-xmark"></i></button>
+  <ul>
+    <li><a data-tab="home"       href="#" class="mob-link">Home</a></li>
+    <li><a data-tab="experience" href="#" class="mob-link">Experience</a></li>
+    <li><a data-tab="projects"   href="#" class="mob-link">Projects</a></li>
+    <li><a data-tab="research"   href="#" class="mob-link">Research</a></li>
+    <li><a data-tab="skills"     href="#" class="mob-link">Skills</a></li>
+    <li><a data-tab="blog"       href="#" class="mob-link">Blog</a></li>
+    <li><a data-tab="cv"         href="#" class="mob-link">CV</a></li>
+    <li><a data-tab="contact"    href="#" class="mob-link">Contact</a></li>
+  </ul>
+</div>
+<div class="overlay" id="overlay"></div>
+
+<!-- ═══ HOME ═══ -->
+<section id="tab-home" class="tab active">
+  <canvas id="three-canvas"></canvas>
+  <div class="hero-grid">
+    <div class="hero-photo-col">
+      <!-- REPLACE: src="images/profile.jpg" — tall portrait, dark background -->
+      <img src="images/profile.svg" alt="Archit Mangrulkar" class="hero-portrait"/>
+      <div class="hero-social-strip">
+        <a href="https://github.com/architmang" target="_blank" rel="noopener" data-cursor="link"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/archit-mangrulkar-033327199/" target="_blank" rel="noopener" data-cursor="link"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="mailto:archit.mangrulkar@gmail.com" data-cursor="link"><i class="fa-solid fa-envelope"></i></a>
+        <a href="https://codeforces.com" target="_blank" rel="noopener" data-cursor="link"><i class="fa-solid fa-code"></i></a>
+      </div>
+      <div class="scanlines" aria-hidden="true"></div>
+    </div>
+    <div class="hero-text-col">
+      <div class="status-badge" id="githubStatus">
+        <span class="status-dot"></span>
+        <span id="status-text">Fetching latest activity…</span>
+      </div>
+      <p class="hero-label">// C++ Engineer · Samsung Research · IIT Kharagpur</p>
+      <h1 class="hero-name">
+        <span class="line">ARCHIT</span>
+        <span class="line accent-line" data-text="MANGRULKAR">MANGRULKAR</span>
+      </h1>
+      <p class="hero-tagline">I'm a&nbsp;<span id="tw-text" class="tw-span"></span><span class="cursor">_</span></p>
+      <p class="hero-bio">C++ engineer at Samsung Research building camera pipelines shipped to millions of Galaxy phones. Computer vision, low-level systems, applied ML. IIT Kharagpur CSE, CGPA 8.57.</p>
+      <div class="hero-ctas">
+        <a href="resume.pdf" download class="cta-primary" data-cursor="link"><i class="fa-solid fa-download"></i> Resume</a>
+        <button class="cta-ghost" data-tab="projects" data-cursor="link">Projects <i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    </div>
   </div>
-  <div class="mobile-overlay" id="mobileOverlay"></div>
 
-  <!-- ===================== HERO ===================== -->
-  <section id="hero">
-    <!-- Animated canvas background -->
-    <canvas id="heroCanvas"></canvas>
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Samsung Research</span><span class="dot">·</span><span>Computer Vision</span><span class="dot">·</span><span>8K HDR Pipelines</span><span class="dot">·</span><span>ARM SIMD</span><span class="dot">·</span><span>IIT Kharagpur</span><span class="dot">·</span><span>ECCV 2026</span><span class="dot">·</span><span>Patent Pending</span><span class="dot">·</span><span>Gold Medal Inter IIT</span><span class="dot">·</span><span>AIR 978 JEE Advanced</span><span class="dot">·</span><span>ONNX Runtime</span><span class="dot">·</span><span>Kalman Filter</span><span class="dot">·</span><span>OpenCL · FPGA · C++</span><span class="dot">·</span>
+      <span>Samsung Research</span><span class="dot">·</span><span>Computer Vision</span><span class="dot">·</span><span>8K HDR Pipelines</span><span class="dot">·</span><span>ARM SIMD</span><span class="dot">·</span><span>IIT Kharagpur</span><span class="dot">·</span><span>ECCV 2026</span><span class="dot">·</span><span>Patent Pending</span><span class="dot">·</span><span>Gold Medal Inter IIT</span><span class="dot">·</span>
+    </div>
+  </div>
 
-    <div class="hero-content">
-      <div class="hero-text">
-        <p class="hero-eyebrow">
-          <span class="dot"></span> Available for opportunities
-        </p>
-        <!-- REPLACE: your name -->
-        <h1 class="hero-name">Archit <span class="accent">Mangrulkar</span></h1>
-        <div class="hero-typewriter">
-          <!-- Typewriter text is injected by script.js -->
-          I'm a <span id="typewriter-text"></span><span class="cursor">|</span>
+  <div class="home-stats">
+    <div class="hs reveal-stat"><span class="hs-n" data-target="2">0</span><span class="hs-unit">+</span><span class="hs-l">Years at Samsung</span></div>
+    <div class="hs reveal-stat"><span class="hs-n" data-target="1">0</span><span class="hs-unit"></span><span class="hs-l">Patent pending</span></div>
+    <div class="hs reveal-stat"><span class="hs-n" data-target="2">0</span><span class="hs-unit"></span><span class="hs-l">Publications</span></div>
+    <div class="hs reveal-stat"><span class="hs-n hs-text">AIR 978</span><span class="hs-unit"></span><span class="hs-l">JEE Advanced</span></div>
+    <div class="hs reveal-stat"><span class="hs-n hs-text">🥇🥈</span><span class="hs-unit"></span><span class="hs-l">Inter IIT Medals</span></div>
+  </div>
+</section>
+
+<!-- ═══ EXPERIENCE ═══ -->
+<section id="tab-experience" class="tab">
+  <div class="page">
+    <div class="page-eyebrow">Work history</div>
+    <h2 class="page-title">EXPERIENCE</h2>
+    <div class="exp-list">
+
+      <div class="exp-row reveal" id="exp-1">
+        <div class="exp-row-header" data-exp="exp-1">
+          <div class="exp-row-left"><span class="exp-num">01</span><div><div class="exp-row-org">Samsung Research India</div><div class="exp-row-role">C++ Developer · Visual Intelligence Team</div></div></div>
+          <div class="exp-row-right"><span class="exp-row-period">Jul 2024 – Present</span><span class="exp-row-loc">Bangalore, India</span><span class="exp-toggle"><i class="fa-solid fa-plus"></i></span></div>
         </div>
-        <p class="hero-bio">
-          <!-- REPLACE: your one-liner -->
-          C++ engineer at Samsung Research shipping camera pipelines to millions of Galaxy phones. IIT Kharagpur CSE, CGPA 8.57.
-        </p>
-        <div class="hero-actions">
-          <!-- REPLACE: resume.pdf with your actual file -->
-          <a href="resume.pdf" download class="btn-primary">
-            <i class="fa-solid fa-download"></i> Download Resume
-          </a>
-          <a href="#projects" class="btn-ghost">View Projects</a>
-        </div>
-        <div class="hero-socials">
-          <!-- REPLACE: all href values with your own links -->
-          <a href="https://github.com/architmang" target="_blank" rel="noopener" aria-label="GitHub">
-            <i class="fa-brands fa-github"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/archit-mangrulkar-033327199/" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <i class="fa-brands fa-linkedin"></i>
-          </a>
-          <a href="mailto:archit.mangrulkar@gmail.com" aria-label="Email">
-            <i class="fa-solid fa-envelope"></i>
-          </a>
-          <a href="https://codeforces.com" target="_blank" rel="noopener" aria-label="CodeForces">
-            <i class="fa-solid fa-code"></i>
-          </a>
-        </div>
+        <div class="exp-row-body"><div class="exp-inner">
+          <!-- REPLACE: src="images/exp-samsung.jpg" -->
+          <img src="images/exp-samsung.svg" alt="Samsung Research India" class="exp-img"/>
+          <div class="exp-detail">
+            <ul class="blist">
+              <li>Commercialized Video Stabilization, QuickTake, Hyperlapse, and Astrolapse on Galaxy S-series flagships.</li>
+              <li>Mainlined camera pipelines for 60 fps with 16.67 ms frame window; 8K capture with 10-bit HDR.</li>
+              <li>ARM SIMD and OpenCL optimizations; gyro sensor listener sampling at 526 microseconds.</li>
+            </ul>
+            <div class="tag-row"><span class="tag">C++</span><span class="tag">ARM SIMD</span><span class="tag">OpenCL</span><span class="tag">Camera Pipelines</span><span class="tag">HDR</span></div>
+          </div>
+        </div></div>
       </div>
 
-      <div class="hero-avatar-wrap">
-        <!-- REPLACE: swap src with your actual photo, e.g. src="images/profile.jpg"
-             Current: https://i.pravatar.cc/300?img=11 (random avatar placeholder) -->
-        <div class="avatar-glow"></div>
-        <img
-          src="https://i.pravatar.cc/300?img=11"
-          alt="Archit Mangrulkar"
-          class="hero-avatar"
-        />
-        <div class="avatar-badge">
-          <i class="fa-solid fa-circle-check"></i> IIT Kharagpur
+      <div class="exp-row reveal" id="exp-2">
+        <div class="exp-row-header" data-exp="exp-2">
+          <div class="exp-row-left"><span class="exp-num">02</span><div><div class="exp-row-org">University of Alberta</div><div class="exp-row-role">Research Intern · Vision and Learning Lab · MITACS Scholar</div></div></div>
+          <div class="exp-row-right"><span class="exp-row-period">May – Aug 2023</span><span class="exp-row-loc">Edmonton, Canada</span><span class="exp-toggle"><i class="fa-solid fa-plus"></i></span></div>
         </div>
+        <div class="exp-row-body"><div class="exp-inner">
+          <!-- REPLACE: src="images/exp-alberta.jpg" -->
+          <img src="images/exp-alberta.svg" alt="University of Alberta" class="exp-img"/>
+          <div class="exp-detail">
+            <ul class="blist">
+              <li>Built large-scale multimodal dataset: RGBD images, eye-tracking, and speech of humans in the wild.</li>
+              <li>Multithreaded C++ server and PyQt5 GUI client for concurrent synchronized capture.</li>
+              <li>3D human pose tracking and clustering using YOLOv5, DeepSORT, and DBSCAN.</li>
+            </ul>
+            <div class="tag-row"><span class="tag">C++</span><span class="tag">PyQt5</span><span class="tag">YOLOv5</span><span class="tag">DeepSORT</span><span class="tag">DBSCAN</span></div>
+          </div>
+        </div></div>
       </div>
-    </div>
 
-    <div class="hero-scroll-hint">
-      <span>scroll</span>
-      <i class="fa-solid fa-chevron-down"></i>
-    </div>
-  </section>
-
-  <!-- ===================== ABOUT ===================== -->
-  <section id="about" class="section">
-    <div class="container">
-      <div class="section-label">About me</div>
-      <h2 class="section-title">The story so far</h2>
-      <div class="about-grid">
-        <div class="about-text glass-card">
-          <!-- REPLACE: your actual bio paragraphs -->
-          <p>I build production camera software at Samsung Research Bangalore that ships on Galaxy S-series flagships. My work spans 60 fps stabilized video pipelines, 8K HDR capture, and ARM SIMD/OpenCL optimizations running at sub-millisecond latency.</p>
-          <p>Before Samsung, I did research stints at the University of Alberta (MITACS Scholar, 2023) building multimodal motion capture systems, and at TU Dresden (Erasmus+ Scholar, 2022) working on approximate computing for FPGA neural network inference.</p>
-          <p>I'm drawn to the layer of software where math meets metal. Whether that's a Kalman filter tracking hedge ratios at 10 ms or a quantized neural net running on a phone's NPU, I care about making things fast, correct, and shipped.</p>
+      <div class="exp-row reveal" id="exp-3">
+        <div class="exp-row-header" data-exp="exp-3">
+          <div class="exp-row-left"><span class="exp-num">03</span><div><div class="exp-row-org">TU Dresden</div><div class="exp-row-role">Research Intern · Chair of Processor Design · Erasmus+ Scholar</div></div></div>
+          <div class="exp-row-right"><span class="exp-row-period">May – Jul 2022</span><span class="exp-row-loc">Dresden, Germany</span><span class="exp-toggle"><i class="fa-solid fa-plus"></i></span></div>
         </div>
-        <div class="about-stats">
-          <!-- REPLACE: numbers and labels with your own -->
-          <div class="stat-card glass-card">
-            <span class="stat-n">2+</span>
-            <span class="stat-l">Years at Samsung</span>
+        <div class="exp-row-body"><div class="exp-inner">
+          <!-- REPLACE: src="images/exp-dresden.jpg" -->
+          <img src="images/exp-dresden.svg" alt="TU Dresden" class="exp-img"/>
+          <div class="exp-detail">
+            <ul class="blist">
+              <li>Neural operators as C static libraries for fast 8-bit FPGA inference with TensorFlow Lite.</li>
+              <li>Cross-layer granularity: signed 8-bit LUTs, polynomial regression, EvoApproxLib multipliers.</li>
+              <li>2x inference speedup via OpenMP, autovectorization, and cache optimizations.</li>
+            </ul>
+            <div class="tag-row"><span class="tag">C</span><span class="tag">TFLite</span><span class="tag">FPGA</span><span class="tag">OpenMP</span><span class="tag">Approximate Computing</span></div>
           </div>
-          <div class="stat-card glass-card">
-            <span class="stat-n">1</span>
-            <span class="stat-l">Patent pending</span>
-          </div>
-          <div class="stat-card glass-card">
-            <span class="stat-n">2</span>
-            <span class="stat-l">Publications</span>
-          </div>
-          <div class="stat-card glass-card">
-            <span class="stat-n">AIR 978</span>
-            <span class="stat-l">JEE Advanced 2020</span>
-          </div>
-        </div>
+        </div></div>
       </div>
+
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===================== SKILLS ===================== -->
-  <section id="skills" class="section">
-    <div class="container">
-      <div class="section-label">What I work with</div>
-      <h2 class="section-title">Skills</h2>
-      <div class="skills-groups">
+<!-- ═══ PROJECTS ═══ -->
+<section id="tab-projects" class="tab">
+  <div class="page">
+    <div class="page-eyebrow">Things I've built</div>
+    <h2 class="page-title">PROJECTS</h2>
+    <div class="proj-list">
+      <div class="proj-row reveal"><div class="proj-num-col">01</div><div class="proj-main"><canvas class="proj-canvas" id="pc1"></canvas><div class="proj-info"><h3 class="proj-name">Kalman Filter Pairs Trading</h3><p class="proj-desc">Pairs-trading engine estimating hedge ratio every 10 ms. 15–22% annualized returns, drawdowns cut 30% via smoothed Avg-Cov-Div signals and sub-millisecond Kalman cycles.</p><div class="tag-row"><span class="tag">Kalman Filter</span><span class="tag">Rolling OLS</span><span class="tag">Python</span><span class="tag">Backtesting</span></div><a href="https://github.com/architmang" target="_blank" rel="noopener" class="proj-link" data-cursor="link">View code <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
+      <div class="proj-row reveal"><div class="proj-num-col">02</div><div class="proj-main"><canvas class="proj-canvas" id="pc2"></canvas><div class="proj-info"><h3 class="proj-name">ARMA Trading Strategy</h3><p class="proj-desc">ARMA model on AAPL via BackTrader. Sharpe ratio 1.5, 10% max-profit gain, 23% profit increase with RSI and MACD. Volatility benchmarked against S&amp;P 500 via ARCH.</p><div class="tag-row"><span class="tag">ARMA</span><span class="tag">ARCH</span><span class="tag">BackTrader</span><span class="tag">MACD</span></div><a href="https://github.com/architmang" target="_blank" rel="noopener" class="proj-link" data-cursor="link">View code <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
+      <div class="proj-row reveal"><div class="proj-num-col">03</div><div class="proj-main"><canvas class="proj-canvas" id="pc3"></canvas><div class="proj-info"><h3 class="proj-name">SQL Query Rewriter</h3><p class="proj-desc">Streamlit app for real-time relational algebra query optimization. Lex &amp; Yacc lexer/parser with a C++ query-tree engine achieving 3x speedup.</p><div class="tag-row"><span class="tag">C++</span><span class="tag">Lex &amp; Yacc</span><span class="tag">Streamlit</span></div><a href="https://github.com/architmang" target="_blank" rel="noopener" class="proj-link" data-cursor="link">View code <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
+      <div class="proj-row reveal"><div class="proj-num-col">04</div><div class="proj-main"><canvas class="proj-canvas" id="pc4"></canvas><div class="proj-info"><h3 class="proj-name">Unix Shell and IPC</h3><p class="proj-desc">Full Unix shell in C++ with I/O redirection, piping, command history, squashbug malware detection, and shared-memory graph with 3x-optimized Dijkstra's.</p><div class="tag-row"><span class="tag">C++</span><span class="tag">Unix</span><span class="tag">IPC</span><span class="tag">Shared Memory</span></div><a href="https://github.com/architmang" target="_blank" rel="noopener" class="proj-link" data-cursor="link">View code <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
+      <div class="proj-row reveal"><div class="proj-num-col">05</div><div class="proj-main"><canvas class="proj-canvas" id="pc5"></canvas><div class="proj-info"><h3 class="proj-name">MyHTTP TCP Browser</h3><p class="proj-desc">Concurrent CLI browser for HTTP/HTTPS file retrieval using OpenSSL. HTTP 1.1 server with GET/PUT, access logging, and status-code handling.</p><div class="tag-row"><span class="tag">C++</span><span class="tag">HTTP 1.1</span><span class="tag">OpenSSL</span><span class="tag">Networking</span></div><a href="https://github.com/architmang" target="_blank" rel="noopener" class="proj-link" data-cursor="link">View code <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
+    </div>
+  </div>
+</section>
 
-        <!-- REPLACE: add/remove skill groups and pills as needed -->
-        <div class="skill-group glass-card">
-          <div class="sg-header">
-            <i class="fa-solid fa-terminal"></i>
-            <span>Languages</span>
-          </div>
-          <div class="pills">
-            <span class="pill">C++</span>
-            <span class="pill">C</span>
-            <span class="pill">Python</span>
-            <span class="pill">SQL</span>
-          </div>
+<!-- ═══ RESEARCH ═══ -->
+<section id="tab-research" class="tab">
+  <div class="page">
+    <div class="page-eyebrow">Publications and patents</div>
+    <h2 class="page-title">RESEARCH</h2>
+    <div class="pub-list">
+      <article class="pub-item reveal">
+        <!-- REPLACE: src="images/research-xr.jpg" -->
+        <img src="images/research-xr.svg" alt="XR Stabilization" class="pub-img"/>
+        <div class="pub-meta"><span class="pub-badge pending">Patent pending</span><h3 class="pub-title">Geometrically Consistent Multi-Camera Stabilization for XR Headsets</h3><p class="pub-body">Co-invented an AI-driven method enforcing geometric consistency across cameras for XR. Solved AR world-anchor loss during rapid head motion via RL. Analyzed pipelines of Apple, Meta, and Xreal.</p><div class="pub-hls"><span>Multi-camera stab</span><span>RL correction</span><span>XR / AR</span></div></div>
+      </article>
+      <article class="pub-item reveal">
+        <!-- REPLACE: src="images/research-vrl.jpg" -->
+        <img src="images/research-vrl.svg" alt="VRL paper" class="pub-img"/>
+        <div class="pub-meta"><span class="pub-badge submitted">ECCV 2026 · Under review</span><h3 class="pub-title">Real-World Video Representation Learning (VRL)</h3><p class="pub-body">Multi-branch video stability model in C++/ONNX with 15x speedup. Model size cut 72% via INT8 quantization. Replaced RAFT with NeuFlow v2 for 44x FLOPS reduction on-device.</p><div class="pub-hls"><span>15x speedup</span><span>72% smaller</span><span>44x FLOPS reduction</span></div></div>
+      </article>
+      <article class="pub-item reveal">
+        <!-- REPLACE: src="images/research-coling.jpg" -->
+        <img src="images/research-coling.svg" alt="COLING paper" class="pub-img"/>
+        <div class="pub-meta"><span class="pub-badge accepted">COLING 2022 · Accepted</span><h3 class="pub-title">Stance and Premise Detection in COVID Tweets</h3><p class="pub-body">BERT, RoBERTa, BART, DeBERTa with dependency parse trees and TF-IDF. Supervised contrastive loss beat baseline by 40%, achieving first place on the leaderboard.</p><div class="pub-hls"><span>+40% over baseline</span><span>Leaderboard #1</span><span>Transformers</span></div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SKILLS ═══ -->
+<section id="tab-skills" class="tab">
+  <div class="page">
+    <div class="page-eyebrow">What I work with</div>
+    <h2 class="page-title">SKILLS</h2>
+    <div class="skills-table">
+      <div class="sk-row reveal"><div class="sk-cat">Languages</div><div class="sk-tags"><span class="tag anim-tag">C++</span><span class="tag anim-tag">C</span><span class="tag anim-tag">Python</span><span class="tag anim-tag">SQL</span></div></div>
+      <div class="sk-row reveal"><div class="sk-cat">Computer Vision</div><div class="sk-tags"><span class="tag anim-tag">OpenCV</span><span class="tag anim-tag">YOLOv5</span><span class="tag anim-tag">DeepSORT</span><span class="tag anim-tag">RAFT</span><span class="tag anim-tag">NeuFlow v2</span></div></div>
+      <div class="sk-row reveal"><div class="sk-cat">Performance</div><div class="sk-tags"><span class="tag anim-tag">ARM SIMD</span><span class="tag anim-tag">OpenCL</span><span class="tag anim-tag">OpenMP</span><span class="tag anim-tag">FPGA inference</span><span class="tag anim-tag">Autovectorization</span></div></div>
+      <div class="sk-row reveal"><div class="sk-cat">ML Runtime</div><div class="sk-tags"><span class="tag anim-tag">ONNX Runtime</span><span class="tag anim-tag">TFLite</span><span class="tag anim-tag">INT8 Quantization</span></div></div>
+      <div class="sk-row reveal"><div class="sk-cat">NLP</div><div class="sk-tags"><span class="tag anim-tag">BERT</span><span class="tag anim-tag">RoBERTa</span><span class="tag anim-tag">BART</span><span class="tag anim-tag">DeBERTa</span><span class="tag anim-tag">GPT-3</span></div></div>
+      <div class="sk-row reveal"><div class="sk-cat">Tools</div><div class="sk-tags"><span class="tag anim-tag">PyQt5</span><span class="tag anim-tag">Streamlit</span><span class="tag anim-tag">BackTrader</span><span class="tag anim-tag">OpenSSL</span><span class="tag anim-tag">Lex &amp; Yacc</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BLOG ═══ -->
+<section id="tab-blog" class="tab">
+  <div class="page">
+    <div class="page-eyebrow">Technical writing</div>
+    <h2 class="page-title">BLOG</h2>
+    <div class="blog-grid">
+
+      <article class="blog-card reveal">
+        <!-- REPLACE: src="images/blog-kernel.jpg" — Linux kernel code screenshot or terminal with driver output -->
+        <div class="blog-img-wrap"><img src="images/blog-kernel.svg" alt="Kernel Driver Development" class="blog-img"/><span class="blog-cat">Systems</span></div>
+        <div class="blog-body">
+          <div class="blog-meta"><span>Jun 2025</span><span>5 min read</span></div>
+          <h3 class="blog-title">Real Skill in Linux Kernel Driver Development</h3>
+          <p class="blog-excerpt">The bug that disappears when you add logs is a concurrency bug. Why spinlock vs mutex, IRQ vs process context, and SMP memory ordering are what make kernel development genuinely hard — and interesting.</p>
+          <div class="tag-row"><span class="tag">Linux Kernel</span><span class="tag">Concurrency</span><span class="tag">C</span><span class="tag">Drivers</span></div>
+          <a href="https://www.linkedin.com/feed/update/urn:li:activity:7383583277384785921/" target="_blank" rel="noopener" class="proj-link" data-cursor="link">Read on LinkedIn <i class="fa-solid fa-arrow-right"></i></a>
         </div>
+      </article>
 
-        <div class="skill-group glass-card">
-          <div class="sg-header">
-            <i class="fa-solid fa-eye"></i>
-            <span>Computer Vision</span>
-          </div>
-          <div class="pills">
-            <span class="pill">OpenCV</span>
-            <span class="pill">YOLOv5</span>
-            <span class="pill">DeepSORT</span>
-            <span class="pill">RAFT</span>
-            <span class="pill">NeuFlow v2</span>
-          </div>
+      <article class="blog-card reveal">
+        <!-- REPLACE: src="images/blog-camera.jpg" — Galaxy S phone, camera HAL diagram, or stabilization frame -->
+        <div class="blog-img-wrap"><img src="images/blog-camera.svg" alt="Camera Pipeline Samsung" class="blog-img"/><span class="blog-cat">Camera</span></div>
+        <div class="blog-body">
+          <div class="blog-meta"><span>Jul 2025</span><span>6 min read</span></div>
+          <h3 class="blog-title">Inside Samsung's Camera Pipeline: 60fps, 8K, and 526µs Gyro Sampling</h3>
+          <p class="blog-excerpt">What it actually takes to ship Video Stabilization and Hyperlapse on Galaxy flagships — from 16.67 ms frame budgets to ARM SIMD accelerated optical flow at the metal level.</p>
+          <div class="tag-row"><span class="tag">C++</span><span class="tag">Camera HAL</span><span class="tag">ARM SIMD</span><span class="tag">OpenCL</span></div>
+          <a href="https://www.linkedin.com/feed/update/urn:li:activity:7385726942584627200/" target="_blank" rel="noopener" class="proj-link" data-cursor="link">Read on LinkedIn <i class="fa-solid fa-arrow-right"></i></a>
         </div>
+      </article>
 
-        <div class="skill-group glass-card">
-          <div class="sg-header">
-            <i class="fa-solid fa-microchip"></i>
-            <span>Performance</span>
-          </div>
-          <div class="pills">
-            <span class="pill">ARM SIMD</span>
-            <span class="pill">OpenCL</span>
-            <span class="pill">OpenMP</span>
-            <span class="pill">FPGA inference</span>
-            <span class="pill">Autovectorization</span>
-          </div>
+      <article class="blog-card reveal">
+        <!-- REPLACE: src="images/blog-quantization.jpg" — model size chart, latency graph, or ONNX diagram -->
+        <div class="blog-img-wrap"><img src="images/blog-quantization.svg" alt="INT8 Quantization" class="blog-img"/><span class="blog-cat">ML Runtime</span></div>
+        <div class="blog-body">
+          <div class="blog-meta"><span>Aug 2025</span><span>7 min read</span></div>
+          <h3 class="blog-title">72% Smaller, 15x Faster: INT8 Quantization for Edge Video Models</h3>
+          <p class="blog-excerpt">How we took a multi-branch video stability model from Python to C++/ONNX, slashed size via INT8 quantization, and replaced RAFT with NeuFlow v2 for 44x FLOPS reduction at the edge.</p>
+          <div class="tag-row"><span class="tag">ONNX</span><span class="tag">INT8</span><span class="tag">TFLite</span><span class="tag">Edge ML</span></div>
+          <a href="https://www.linkedin.com/feed/update/urn:li:activity:7391591967257878529/" target="_blank" rel="noopener" class="proj-link" data-cursor="link">Read on LinkedIn <i class="fa-solid fa-arrow-right"></i></a>
         </div>
+      </article>
 
-        <div class="skill-group glass-card">
-          <div class="sg-header">
-            <i class="fa-solid fa-brain"></i>
-            <span>ML Runtime</span>
-          </div>
-          <div class="pills">
-            <span class="pill">ONNX Runtime</span>
-            <span class="pill">TFLite</span>
-            <span class="pill">INT8 Quantization</span>
-          </div>
+      <article class="blog-card reveal">
+        <!-- REPLACE: src="images/blog-trading.jpg" — equity chart with Kalman overlay or hedge ratio plot -->
+        <div class="blog-img-wrap"><img src="images/blog-trading.svg" alt="Kalman Filter Trading" class="blog-img"/><span class="blog-cat">Quant Finance</span></div>
+        <div class="blog-body">
+          <div class="blog-meta"><span>Sep 2025</span><span>8 min read</span></div>
+          <h3 class="blog-title">Kalman Filter Pairs Trading: 10ms Updates and 22% Returns</h3>
+          <p class="blog-excerpt">Building a real-time pairs-trading system where the Kalman filter estimates the hedge ratio at 10 ms cadence. Smoothed Avg-Cov-Div signals cut drawdowns 30%, sub-millisecond rolling OLS updates.</p>
+          <div class="tag-row"><span class="tag">Kalman Filter</span><span class="tag">Python</span><span class="tag">Quant</span><span class="tag">Backtesting</span></div>
+          <a href="https://www.linkedin.com/feed/update/urn:li:activity:7365129260447035392/" target="_blank" rel="noopener" class="proj-link" data-cursor="link">Read on LinkedIn <i class="fa-solid fa-arrow-right"></i></a>
         </div>
+      </article>
 
-        <div class="skill-group glass-card">
-          <div class="sg-header">
-            <i class="fa-solid fa-comment-dots"></i>
-            <span>NLP</span>
-          </div>
-          <div class="pills">
-            <span class="pill">BERT</span>
-            <span class="pill">RoBERTa</span>
-            <span class="pill">BART</span>
-            <span class="pill">DeBERTa</span>
-            <span class="pill">GPT-3</span>
-          </div>
+      <article class="blog-card reveal">
+        <!-- REPLACE: src="images/blog-hashmap.jpg" — memory layout diagram or cache miss chart -->
+        <div class="blog-img-wrap"><img src="images/blog-hashmap.svg" alt="Hash Map Performance" class="blog-img"/><span class="blog-cat">C++ Performance</span></div>
+        <div class="blog-body">
+          <div class="blog-meta"><span>Oct 2025</span><span>5 min read</span></div>
+          <h3 class="blog-title">Cache Behavior is the Real Complexity: std::unordered_map vs absl::flat_hash_map</h3>
+          <p class="blog-excerpt">Two O(1) structures can differ 3x in latency purely because of how they touch memory. In a matching engine, pointer invalidation on rehash isn't a perf problem — it's a correctness disaster.</p>
+          <div class="tag-row"><span class="tag">C++</span><span class="tag">Performance</span><span class="tag">Cache</span><span class="tag">Data Structures</span></div>
+          <a href="https://www.linkedin.com/feed/update/urn:li:activity:7427680943307485184/" target="_blank" rel="noopener" class="proj-link" data-cursor="link">Read on LinkedIn <i class="fa-solid fa-arrow-right"></i></a>
         </div>
+      </article>
 
-        <div class="skill-group glass-card">
-          <div class="sg-header">
-            <i class="fa-solid fa-wrench"></i>
-            <span>Tools</span>
-          </div>
-          <div class="pills">
-            <span class="pill">PyQt5</span>
-            <span class="pill">Streamlit</span>
-            <span class="pill">BackTrader</span>
-            <span class="pill">OpenSSL</span>
-            <span class="pill">Lex &amp; Yacc</span>
-          </div>
-        </div>
+    </div>
+  </div>
+</section>
 
+<!-- ═══ CV ═══ -->
+<section id="tab-cv" class="tab">
+  <div class="page cv-page">
+    <div class="page-eyebrow">Curriculum Vitae</div>
+    <h2 class="page-title">CV</h2>
+    <div class="cv-actions">
+      <a href="resume.pdf" target="_blank" rel="noopener" class="cta-primary" data-cursor="link"><i class="fa-solid fa-file-pdf"></i> Open PDF</a>
+      <a href="resume.pdf" download class="cta-ghost" data-cursor="link"><i class="fa-solid fa-download"></i> Download</a>
+    </div>
+    <div class="cv-shell">
+      <iframe src="resume.pdf" id="cv-iframe" class="cv-iframe" title="Resume PDF"></iframe>
+      <div class="cv-fallback"><i class="fa-solid fa-file-pdf"></i><p>Browser can't display the PDF inline.</p><a href="resume.pdf" target="_blank" class="cta-primary" style="margin-top:1rem">Open in new tab</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="tab-contact" class="tab">
+  <div class="page">
+    <div class="page-eyebrow">Get in touch</div>
+    <h2 class="page-title">LET'S WORK<br>TOGETHER</h2>
+    <div class="contact-grid">
+      <div class="contact-left reveal">
+        <p class="contact-blurb">Open to full-time roles, research collaborations, and conversations about computer vision, systems programming, or algorithmic trading.</p>
+        <ul class="contact-deets">
+          <li><i class="fa-solid fa-envelope"></i><a href="mailto:archit.mangrulkar@gmail.com">archit.mangrulkar@gmail.com</a></li>
+          <li><i class="fa-solid fa-location-dot"></i><span>Bangalore, India</span></li>
+          <li><i class="fa-brands fa-github"></i><a href="https://github.com/architmang" target="_blank" rel="noopener">github.com/architmang</a></li>
+          <li><i class="fa-brands fa-linkedin"></i><a href="https://www.linkedin.com/in/archit-mangrulkar-033327199/" target="_blank" rel="noopener">linkedin.com/in/archit-mangrulkar</a></li>
+        </ul>
+        <a href="resume.pdf" download class="cta-primary" style="margin-top:1.75rem;display:inline-flex" data-cursor="link"><i class="fa-solid fa-download"></i> Download Resume</a>
       </div>
-    </div>
-  </section>
-
-  <!-- ===================== PROJECTS ===================== -->
-  <section id="projects" class="section">
-    <div class="container">
-      <div class="section-label">Things I've built</div>
-      <h2 class="section-title">Projects</h2>
-      <div class="projects-grid">
-
-        <!-- ── PROJECT CARD ──
-             REPLACE each card:
-               - img src: swap picsum URL for your screenshot, e.g. src="images/proj1.png"
-               - .proj-title: project name
-               - .proj-desc: 2-sentence description
-               - .pill tags
-               - href on both buttons (GitHub repo and live demo)
-        -->
-
-        <article class="proj-card glass-card">
-          <div class="proj-img-wrap">
-            <img src="https://picsum.photos/600/340?random=10" alt="Kalman Filter Trading" class="proj-img" loading="lazy" />
-            <div class="proj-img-overlay">
-              <a href="https://github.com/architmang" target="_blank" rel="noopener" class="overlay-btn"><i class="fa-brands fa-github"></i> Code</a>
-              <!-- REPLACE: live demo link, or remove this button -->
-              <a href="#" class="overlay-btn overlay-btn-accent"><i class="fa-solid fa-arrow-up-right-from-square"></i> Demo</a>
-            </div>
-          </div>
-          <div class="proj-body">
-            <h3 class="proj-title">Kalman Filter Pairs Trading</h3>
-            <p class="proj-desc">Pairs-trading engine estimating hedge ratio every 10 ms. Achieves 15-22% annualized returns with drawdowns cut 30% via smoothed Avg-Cov-Div signals and sub-millisecond Kalman update cycles.</p>
-            <div class="pills proj-stack">
-              <span class="pill pill-sm">Kalman Filter</span>
-              <span class="pill pill-sm">Rolling OLS</span>
-              <span class="pill pill-sm">Python</span>
-              <span class="pill pill-sm">Backtesting</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="proj-card glass-card">
-          <div class="proj-img-wrap">
-            <img src="https://picsum.photos/600/340?random=20" alt="SQL Query Rewriter" class="proj-img" loading="lazy" />
-            <div class="proj-img-overlay">
-              <a href="https://github.com/architmang" target="_blank" rel="noopener" class="overlay-btn"><i class="fa-brands fa-github"></i> Code</a>
-              <a href="#" class="overlay-btn overlay-btn-accent"><i class="fa-solid fa-arrow-up-right-from-square"></i> Demo</a>
-            </div>
-          </div>
-          <div class="proj-body">
-            <h3 class="proj-title">SQL Query Rewriter</h3>
-            <p class="proj-desc">Streamlit app for real-time relational algebra query compilation and optimization. Lex &amp; Yacc lexer/parser with a C++ query-tree engine achieving a 3x speedup over naive evaluation.</p>
-            <div class="pills proj-stack">
-              <span class="pill pill-sm">C++</span>
-              <span class="pill pill-sm">Lex &amp; Yacc</span>
-              <span class="pill pill-sm">Streamlit</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="proj-card glass-card">
-          <div class="proj-img-wrap">
-            <img src="https://picsum.photos/600/340?random=30" alt="Unix Shell IPC" class="proj-img" loading="lazy" />
-            <div class="proj-img-overlay">
-              <a href="https://github.com/architmang" target="_blank" rel="noopener" class="overlay-btn"><i class="fa-brands fa-github"></i> Code</a>
-              <a href="#" class="overlay-btn overlay-btn-accent"><i class="fa-solid fa-arrow-up-right-from-square"></i> Demo</a>
-            </div>
-          </div>
-          <div class="proj-body">
-            <h3 class="proj-title">Unix Shell and IPC</h3>
-            <p class="proj-desc">Full Unix shell in C++ with I/O redirection, piping, and command history. Custom squashbug malware-detection feature and a shared-memory graph with 3x-optimized Dijkstra's shortest path.</p>
-            <div class="pills proj-stack">
-              <span class="pill pill-sm">C++</span>
-              <span class="pill pill-sm">Unix</span>
-              <span class="pill pill-sm">Shared Memory</span>
-              <span class="pill pill-sm">IPC</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="proj-card glass-card">
-          <div class="proj-img-wrap">
-            <img src="https://picsum.photos/600/340?random=40" alt="ARMA Trading" class="proj-img" loading="lazy" />
-            <div class="proj-img-overlay">
-              <a href="https://github.com/architmang" target="_blank" rel="noopener" class="overlay-btn"><i class="fa-brands fa-github"></i> Code</a>
-              <a href="#" class="overlay-btn overlay-btn-accent"><i class="fa-solid fa-arrow-up-right-from-square"></i> Demo</a>
-            </div>
-          </div>
-          <div class="proj-body">
-            <h3 class="proj-title">ARMA Trading Strategy</h3>
-            <p class="proj-desc">Time Series ARMA model on AAPL via BackTrader. Sharpe ratio of 1.5, 10% max-profit gain. 23% profit increase with RSI/MACD indicators; volatility benchmarked against S&amp;P 500 with ARCH.</p>
-            <div class="pills proj-stack">
-              <span class="pill pill-sm">ARMA</span>
-              <span class="pill pill-sm">ARCH</span>
-              <span class="pill pill-sm">BackTrader</span>
-              <span class="pill pill-sm">MACD</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="proj-card glass-card">
-          <div class="proj-img-wrap">
-            <img src="https://picsum.photos/600/340?random=50" alt="MyHTTP Browser" class="proj-img" loading="lazy" />
-            <div class="proj-img-overlay">
-              <a href="https://github.com/architmang" target="_blank" rel="noopener" class="overlay-btn"><i class="fa-brands fa-github"></i> Code</a>
-              <a href="#" class="overlay-btn overlay-btn-accent"><i class="fa-solid fa-arrow-up-right-from-square"></i> Demo</a>
-            </div>
-          </div>
-          <div class="proj-body">
-            <h3 class="proj-title">MyHTTP TCP Browser</h3>
-            <p class="proj-desc">Concurrent CLI browser for HTTP/HTTPS file retrieval using OpenSSL secure sockets. Implements an HTTP 1.1 server with GET/PUT support, access logging, and proper status-code handling.</p>
-            <div class="pills proj-stack">
-              <span class="pill pill-sm">C++</span>
-              <span class="pill pill-sm">HTTP 1.1</span>
-              <span class="pill pill-sm">OpenSSL</span>
-              <span class="pill pill-sm">Networking</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- ADD MORE CARDS HERE following the same pattern -->
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== CONTACT ===================== -->
-  <section id="contact" class="section">
-    <div class="container">
-      <div class="section-label">Get in touch</div>
-      <h2 class="section-title">Let's work together</h2>
-      <div class="contact-grid">
-
-        <div class="contact-info">
-          <p class="contact-blurb">
-            <!-- REPLACE: your availability / pitch -->
-            Open to full-time roles, research collaborations, and conversations about computer vision, systems programming, or algorithmic trading.
-          </p>
-          <ul class="contact-details">
-            <!-- REPLACE: all contact values -->
-            <li>
-              <i class="fa-solid fa-envelope"></i>
-              <a href="mailto:archit.mangrulkar@gmail.com">archit.mangrulkar@gmail.com</a>
-            </li>
-            <li>
-              <i class="fa-solid fa-location-dot"></i>
-              <span>Bangalore, India</span>
-            </li>
-            <li>
-              <i class="fa-brands fa-github"></i>
-              <a href="https://github.com/architmang" target="_blank" rel="noopener">github.com/architmang</a>
-            </li>
-            <li>
-              <i class="fa-brands fa-linkedin"></i>
-              <a href="https://www.linkedin.com/in/archit-mangrulkar-033327199/" target="_blank" rel="noopener">linkedin.com/in/archit-mangrulkar</a>
-            </li>
-          </ul>
-          <!-- REPLACE: resume.pdf with your file -->
-          <a href="resume.pdf" download class="btn-primary" style="margin-top:1.75rem; display:inline-flex;">
-            <i class="fa-solid fa-download"></i> Download Resume
-          </a>
+      <!-- REPLACE: update action="https://formspree.io/f/your-form-id" -->
+      <form class="contact-form reveal" action="https://formspree.io/f/your-form-id" method="POST">
+        <div class="form-row">
+          <div class="fg"><label>Name</label><input type="text" name="name" placeholder="Jane Smith" required/></div>
+          <div class="fg"><label>Email</label><input type="email" name="email" placeholder="jane@example.com" required/></div>
         </div>
-
-        <!--
-          REPLACE: change the action URL to your actual Formspree endpoint.
-          Sign up at https://formspree.io, create a form, and replace
-          "your-form-id" with the ID Formspree gives you.
-        -->
-        <form class="contact-form glass-card" action="https://formspree.io/f/your-form-id" method="POST">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="fname">Name</label>
-              <input type="text" id="fname" name="name" placeholder="Jane Smith" required />
-            </div>
-            <div class="form-group">
-              <label for="femail">Email</label>
-              <input type="email" id="femail" name="email" placeholder="jane@example.com" required />
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="fsubject">Subject</label>
-            <input type="text" id="fsubject" name="subject" placeholder="Collaboration opportunity" />
-          </div>
-          <div class="form-group">
-            <label for="fmessage">Message</label>
-            <textarea id="fmessage" name="message" rows="5" placeholder="Tell me about the project or role..." required></textarea>
-          </div>
-          <button type="submit" class="btn-primary btn-full">
-            <i class="fa-solid fa-paper-plane"></i> Send message
-          </button>
-          <p class="form-note">Powered by <a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a>. Replace the action URL with your own endpoint.</p>
-        </form>
-
-      </div>
+        <div class="fg"><label>Subject</label><input type="text" name="subject" placeholder="Collaboration opportunity"/></div>
+        <div class="fg"><label>Message</label><textarea name="message" rows="5" placeholder="Tell me about the project or role..." required></textarea></div>
+        <button type="submit" class="cta-primary" style="width:100%;justify-content:center" data-cursor="link"><i class="fa-solid fa-paper-plane"></i> Send message</button>
+      </form>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===================== FOOTER ===================== -->
-  <footer>
-    <div class="container footer-inner">
-      <!-- REPLACE: your name and year -->
-      <p>&copy; 2025 Archit Mangrulkar. Built with HTML, CSS, and vanilla JS.</p>
-      <div class="footer-socials">
-        <a href="https://github.com/architmang" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/archit-mangrulkar-033327199/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-        <a href="mailto:archit.mangrulkar@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
-      </div>
+<footer>
+  <div class="footer-in">
+    <span>&copy; 2025 Archit Mangrulkar</span>
+    <div class="footer-links">
+      <a href="https://github.com/architmang" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/archit-mangrulkar-033327199/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="mailto:archit.mangrulkar@gmail.com"><i class="fa-solid fa-envelope"></i></a>
     </div>
-  </footer>
+  </div>
+</footer>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
