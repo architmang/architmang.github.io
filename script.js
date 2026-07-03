@@ -25,12 +25,30 @@ function showTab(name) {
   const target = document.getElementById('tab-' + name);
   if (!target) return;
   target.classList.add('active');
-  window.scrollTo(0, 0);
+
+  // Scroll to top of page content (below nav)
+  window.scrollTo({ top: 0, behavior: 'instant' });
+
   document.querySelectorAll('[data-tab]').forEach(a =>
     a.classList.toggle('active', a.dataset.tab === name));
   setTimeout(triggerReveal, 80);
   if (name === 'projects') setTimeout(drawAllCanvases, 150);
   if (name === 'skills')   setTimeout(animSkillTags, 400);
+
+  // Auto-open first experience accordion
+  if (name === 'experience') {
+    document.querySelectorAll('.exp-row.open').forEach(r => r.classList.remove('open'));
+    const first = document.getElementById('exp-1');
+    if (first) first.classList.add('open');
+  }
+
+  // Smooth scroll to page content after brief paint delay
+  if (name !== 'home') {
+    setTimeout(() => {
+      const page = target.querySelector('.page');
+      if (page) page.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 60);
+  }
 }
 
 document.querySelectorAll('[data-tab]').forEach(el =>
