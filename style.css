@@ -219,23 +219,25 @@ body.cursor-link #cursor-follower { width:48px; height:48px; border-color:rgba(5
   clip-path: polygon(0 30%, 100% 30%, 100% 50%, 0 50%);
 }
 .accent-line::before {
-  animation: glitch1 4s infinite linear;
-  color:#38bdf8; opacity:.7;
+  animation: glitch1 1.2s infinite linear;
+  color:#fbbf24; opacity:.75; /* amber */
 }
 .accent-line::after {
-  animation: glitch2 4s infinite linear;
-  color:#f472b6; opacity:.5;
+  animation: glitch2 1.2s infinite linear;
+  color:#34d399; opacity:.6; /* emerald */
 }
 @keyframes glitch1 {
-  0%,94%{transform:translateX(0);clip-path:polygon(0 30%,100% 30%,100% 50%,0 50%);}
-  95%{transform:translateX(-3px);clip-path:polygon(0 10%,100% 10%,100% 40%,0 40%);}
-  96%{transform:translateX(3px);clip-path:polygon(0 60%,100% 60%,100% 80%,0 80%);}
-  97%{transform:translateX(-2px);} 98%,100%{transform:translateX(0);}
+  0%,80%{transform:translateX(0);clip-path:polygon(0 30%,100% 30%,100% 50%,0 50%);}
+  82%{transform:translateX(-4px);clip-path:polygon(0 8%,100% 8%,100% 38%,0 38%);}
+  85%{transform:translateX(3px);clip-path:polygon(0 58%,100% 58%,100% 78%,0 78%);}
+  88%{transform:translateX(-2px);clip-path:polygon(0 20%,100% 20%,100% 42%,0 42%);}
+  92%,100%{transform:translateX(0);clip-path:polygon(0 30%,100% 30%,100% 50%,0 50%);}
 }
 @keyframes glitch2 {
-  0%,96%{transform:translateX(0);clip-path:polygon(0 50%,100% 50%,100% 70%,0 70%);}
-  97%{transform:translateX(4px);clip-path:polygon(0 20%,100% 20%,100% 45%,0 45%);}
-  98%{transform:translateX(-2px);} 99%,100%{transform:translateX(0);}
+  0%,84%{transform:translateX(0);clip-path:polygon(0 50%,100% 50%,100% 70%,0 70%);}
+  86%{transform:translateX(5px);clip-path:polygon(0 18%,100% 18%,100% 44%,0 44%);}
+  89%{transform:translateX(-3px);clip-path:polygon(0 65%,100% 65%,100% 82%,0 82%);}
+  93%,100%{transform:translateX(0);clip-path:polygon(0 50%,100% 50%,100% 70%,0 70%);}
 }
 
 .hero-tagline { font-size:.95rem; color:var(--muted); margin-bottom:1rem; font-family:var(--mono); min-height:1.6rem; }

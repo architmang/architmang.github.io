@@ -179,29 +179,9 @@ tw();
    6. GITHUB LIVE STATUS
    Fetches most recent public event from GitHub
 ────────────────────────────────────── */
-(function fetchGithubStatus() {
+(function setStatus() {
   const el = document.getElementById('status-text');
-  if (!el) return;
-  // REPLACE: 'architmang' with your GitHub username
-  fetch('https://api.github.com/users/architmang/events/public?per_page=5')
-    .then(r => r.json())
-    .then(data => {
-      if (!Array.isArray(data) || !data.length) throw new Error();
-      const e = data[0];
-      const repo = e.repo?.name?.split('/')[1] || 'a repo';
-      const type = e.type || 'PushEvent';
-      const map = {
-        PushEvent:            `Pushed to ${repo}`,
-        CreateEvent:          `Created ${repo}`,
-        WatchEvent:           `Starred ${repo}`,
-        ForkEvent:            `Forked ${repo}`,
-        PullRequestEvent:     `Opened PR on ${repo}`,
-        IssuesEvent:          `Opened issue on ${repo}`,
-        PullRequestReviewEvent:`Reviewed PR on ${repo}`,
-      };
-      el.textContent = map[type] || `Active on GitHub`;
-    })
-    .catch(() => { el.textContent = 'Currently at Samsung Research, Bangalore'; });
+  if (el) el.textContent = 'Currently at Samsung Research, Bangalore';
 })();
 
 /* ──────────────────────────────────────
