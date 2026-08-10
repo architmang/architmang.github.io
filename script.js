@@ -268,11 +268,12 @@ document.querySelectorAll('.exp-row-header').forEach(hdr => {
 ────────────────────────────────────── */
 function drawAllCanvases() {
   [
-    ['pc1', drawKalman],
-    ['pc2', drawARMA],
-    ['pc3', drawSQL],
-    ['pc4', drawShell],
-    ['pc5', drawHTTP],
+    ['pc1', drawMatchingEngine],
+    ['pc2', drawKalman],
+    ['pc3', drawARMA],
+    ['pc4', drawSQL],
+    ['pc5', drawShell],
+    ['pc6', drawHTTP],
   ].forEach(([id, fn]) => {
     const c = document.getElementById(id);
     if (!c) return;
@@ -283,6 +284,43 @@ function drawAllCanvases() {
     ctx.scale(dpr, dpr);
     fn(ctx, c.offsetWidth, c.offsetHeight);
   });
+}
+
+function drawMatchingEngine(ctx, W, H) {
+  ctx.fillStyle='#050a0f'; ctx.fillRect(0,0,W,H);
+  // Order book columns
+  const col = W/2;
+  ctx.fillStyle='rgba(74,222,128,.06)'; ctx.fillRect(0,30,col-1,H-30);
+  ctx.fillStyle='rgba(248,113,113,.06)'; ctx.fillRect(col+1,30,col-1,H-30);
+  ctx.fillStyle='rgba(255,255,255,.08)'; ctx.fillRect(0,28,W,2);
+  // Headers
+  ctx.font='bold 10px JetBrains Mono,monospace'; ctx.textAlign='center';
+  ctx.fillStyle='#4ade80'; ctx.fillText('BIDS', col/2, 22);
+  ctx.fillStyle='#f87171'; ctx.fillText('ASKS', col+col/2, 22);
+  // Bid rows
+  const bids = [[100.50,420],[100.48,310],[100.45,780],[100.42,155],[100.40,900],[100.38,230]];
+  const asks = [[100.52,380],[100.55,290],[100.58,610],[100.61,175],[100.63,820],[100.65,340]];
+  ctx.font='10px JetBrains Mono,monospace';
+  bids.forEach(([p,q],i)=>{
+    const y=46+i*22, barW=(q/900)*(col-60);
+    ctx.fillStyle='rgba(74,222,128,.18)'; ctx.fillRect(col-barW-30,y-12,barW,18);
+    ctx.fillStyle='#4ade80'; ctx.textAlign='right'; ctx.fillText(p.toFixed(2),col-34,y);
+    ctx.fillStyle='rgba(74,222,128,.6)'; ctx.textAlign='left'; ctx.fillText(q,col-28,y);
+  });
+  asks.forEach(([p,q],i)=>{
+    const y=46+i*22, barW=(q/900)*(col-60);
+    ctx.fillStyle='rgba(248,113,113,.18)'; ctx.fillRect(col+30,y-12,barW,18);
+    ctx.fillStyle='#f87171'; ctx.textAlign='left'; ctx.fillText(p.toFixed(2),col+34,y);
+    ctx.fillStyle='rgba(248,113,113,.6)'; ctx.textAlign='right'; ctx.fillText(q,col+28,y);
+  });
+  // Spread line
+  ctx.strokeStyle='rgba(167,139,250,.5)'; ctx.lineWidth=1; ctx.setLineDash([4,3]);
+  ctx.beginPath(); ctx.moveTo(col,28); ctx.lineTo(col,H); ctx.stroke(); ctx.setLineDash([]);
+  ctx.fillStyle='rgba(167,139,250,.9)'; ctx.font='bold 9px JetBrains Mono,monospace';
+  ctx.textAlign='center'; ctx.fillText('SPREAD  $0.02',col,H-8);
+  ctx.textAlign='left';
+  ctx.fillStyle='rgba(167,139,250,.9)'; ctx.font='bold 11px JetBrains Mono,monospace';
+  ctx.fillText('ORDER MATCHING ENGINE  C++',14,14);
 }
 
 function drawKalman(ctx, W, H) {
@@ -398,9 +436,22 @@ if (form) {
     e.preventDefault();
     const btn = form.querySelector('button[type="submit"]');
     const orig = btn.innerHTML;
+    const action = form.action;
+
+    // If Formspree not configured, fall back to mailto
+    if (action.includes('your-form-id')) {
+      const name    = form.querySelector('[name="name"]').value;
+      const subject = form.querySelector('[name="subject"]').value || 'Portfolio contact';
+      const message = form.querySelector('[name="message"]').value;
+      const email   = form.querySelector('[name="email"]').value;
+      const mailto  = `mailto:archit.mangrulkar@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${name} (${email})\n\n${message}`)}`;
+      window.location.href = mailto;
+      return;
+    }
+
     btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...'; btn.disabled = true;
     try {
-      const res = await fetch(form.action, { method:'POST', body:new FormData(form), headers:{Accept:'application/json'} });
+      const res = await fetch(action, { method:'POST', body:new FormData(form), headers:{Accept:'application/json'} });
       if (res.ok) { btn.innerHTML='<i class="fa-solid fa-circle-check"></i> Sent!'; btn.style.background='#22c55e'; form.reset(); }
       else throw 0;
     } catch { btn.innerHTML='<i class="fa-solid fa-triangle-exclamation"></i> Failed — email me directly'; btn.style.background='#ef4444'; }
