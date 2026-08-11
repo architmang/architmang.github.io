@@ -220,11 +220,11 @@ body.cursor-link #cursor-follower { width:48px; height:48px; border-color:rgba(5
 }
 .accent-line::before {
   animation: glitch1 1.2s infinite linear;
-  color:#fbbf24; opacity:.75; /* amber */
+  color:#4ade80; opacity:.75; /* acid green */
 }
 .accent-line::after {
   animation: glitch2 1.2s infinite linear;
-  color:#34d399; opacity:.6; /* emerald */
+  color:#f97316; opacity:.6; /* orange */
 }
 @keyframes glitch1 {
   0%,80%{transform:translateX(0);clip-path:polygon(0 30%,100% 30%,100% 50%,0 50%);}
