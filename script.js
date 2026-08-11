@@ -268,12 +268,13 @@ document.querySelectorAll('.exp-row-header').forEach(hdr => {
 ────────────────────────────────────── */
 function drawAllCanvases() {
   [
-    ['pc1', drawMatchingEngine],
-    ['pc2', drawKalman],
-    ['pc3', drawARMA],
-    ['pc4', drawSQL],
-    ['pc5', drawShell],
-    ['pc6', drawHTTP],
+    ['pc1', drawLockFree],
+    ['pc2', drawMatchingEngine],
+    ['pc3', drawKalman],
+    ['pc4', drawARMA],
+    ['pc5', drawSQL],
+    ['pc6', drawShell],
+    ['pc7', drawHTTP],
   ].forEach(([id, fn]) => {
     const c = document.getElementById(id);
     if (!c) return;
@@ -284,6 +285,54 @@ function drawAllCanvases() {
     ctx.scale(dpr, dpr);
     fn(ctx, c.offsetWidth, c.offsetHeight);
   });
+}
+
+function drawLockFree(ctx, W, H) {
+  ctx.fillStyle = '#050a0e'; ctx.fillRect(0, 0, W, H);
+  // Ring buffer visualization
+  const cx = W * 0.38, cy = H * 0.5, r = Math.min(W, H) * 0.28;
+  const slots = 12;
+  for (let i = 0; i < slots; i++) {
+    const a = (i / slots) * Math.PI * 2 - Math.PI / 2;
+    const x = cx + Math.cos(a) * r, y = cy + Math.sin(a) * r;
+    const filled = i < 7;
+    ctx.beginPath(); ctx.arc(x, y, 14, 0, Math.PI * 2);
+    ctx.fillStyle = filled ? 'rgba(167,139,250,0.25)' : 'rgba(255,255,255,0.04)';
+    ctx.fill();
+    ctx.strokeStyle = filled ? 'rgba(167,139,250,0.7)' : 'rgba(255,255,255,0.1)';
+    ctx.lineWidth = 1.5; ctx.stroke();
+    if (filled) {
+      ctx.fillStyle = '#a78bfa'; ctx.font = 'bold 9px JetBrains Mono,monospace';
+      ctx.textAlign = 'center'; ctx.fillText(i, x, y + 3);
+    }
+  }
+  // HEAD arrow
+  const headA = (-Math.PI / 2);
+  const hx = cx + Math.cos(headA) * r, hy = cy + Math.sin(headA) * r;
+  ctx.fillStyle = '#4ade80'; ctx.font = 'bold 9px JetBrains Mono,monospace';
+  ctx.textAlign = 'center'; ctx.fillText('H', hx, hy - 22);
+  // TAIL arrow
+  const tailA = (6 / slots) * Math.PI * 2 - Math.PI / 2;
+  const tx2 = cx + Math.cos(tailA) * r, ty2 = cy + Math.sin(tailA) * r;
+  ctx.fillStyle = '#f87171'; ctx.fillText('T', tx2, ty2 + 28);
+  // Cache line padding label
+  ctx.fillStyle = 'rgba(56,189,248,0.7)'; ctx.font = '9px JetBrains Mono,monospace';
+  ctx.textAlign = 'center'; ctx.fillText('64B cache-line padding', cx, cy);
+  ctx.fillStyle = 'rgba(167,139,250,0.5)'; ctx.fillText('false-share eliminated', cx, cy + 14);
+  // Right side: throughput bar
+  const bx = W * 0.72, by = H * 0.22;
+  [['mutex',  1.0, '#f87171'], ['lock-free', 2.14, '#4ade80']].forEach(([lbl, mult, col], i) => {
+    const bw = (W * 0.22) * mult / 2.14;
+    ctx.fillStyle = col + '33'; ctx.fillRect(bx, by + i * 38, bw, 22);
+    ctx.strokeStyle = col; ctx.lineWidth = 1; ctx.strokeRect(bx, by + i * 38, bw, 22);
+    ctx.fillStyle = col; ctx.font = '9px JetBrains Mono,monospace'; ctx.textAlign = 'left';
+    ctx.fillText(`${lbl}  ${mult}x`, bx + 5, by + i * 38 + 14);
+  });
+  ctx.textAlign = 'left';
+  ctx.fillStyle = 'rgba(167,139,250,.9)'; ctx.font = 'bold 11px JetBrains Mono,monospace';
+  ctx.fillText('LOCK-FREE CONCURRENCY TOOLKIT  C++17', 14, 20);
+  ctx.fillStyle = 'rgba(74,222,128,.8)'; ctx.font = '10px JetBrains Mono,monospace';
+  ctx.fillText('2.14x throughput · MPMC queue · Vyukov ring buffer', 14, H - 12);
 }
 
 function drawMatchingEngine(ctx, W, H) {

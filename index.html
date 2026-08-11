@@ -31,6 +31,7 @@
     <li><a data-tab="research"   href="#">Research</a></li>
     <li><a data-tab="skills"     href="#">Skills</a></li>
     <li><a data-tab="blog"       href="#">Blog</a></li>
+    <li><a data-tab="personal"   href="#">Personal</a></li>
     <li><a data-tab="cv"         href="#">CV</a></li>
     <li><a data-tab="contact"    href="#">Contact</a></li>
   </ul>
@@ -46,6 +47,7 @@
     <li><a data-tab="research"   href="#" class="mob-link">Research</a></li>
     <li><a data-tab="skills"     href="#" class="mob-link">Skills</a></li>
     <li><a data-tab="blog"       href="#" class="mob-link">Blog</a></li>
+    <li><a data-tab="personal"   href="#" class="mob-link">Personal</a></li>
     <li><a data-tab="cv"         href="#" class="mob-link">CV</a></li>
     <li><a data-tab="contact"    href="#" class="mob-link">Contact</a></li>
   </ul>
@@ -63,6 +65,7 @@
         <a href="https://github.com/architmang" target="_blank" rel="noopener" data-cursor="link"><i class="fa-brands fa-github"></i></a>
         <a href="https://www.linkedin.com/in/archit-mangrulkar-033327199/" target="_blank" rel="noopener" data-cursor="link"><i class="fa-brands fa-linkedin"></i></a>
         <a href="mailto:archit.mangrulkar@gmail.com" data-cursor="link"><i class="fa-solid fa-envelope"></i></a>
+        <a href="https://x.com/archit_mang01" target="_blank" rel="noopener" data-cursor="link"><i class="fa-brands fa-x-twitter"></i></a>
         <a href="https://codeforces.com" target="_blank" rel="noopener" data-cursor="link"><i class="fa-solid fa-code"></i></a>
       </div>
       <div class="scanlines" aria-hidden="true"></div>
@@ -176,12 +179,13 @@
     <div class="page-eyebrow">Things I've built</div>
     <h2 class="page-title">PROJECTS</h2>
     <div class="proj-list">
-      <div class="proj-row reveal"><div class="proj-num-col">01</div><div class="proj-main"><canvas class="proj-canvas" id="pc1"></canvas><div class="proj-info"><h3 class="proj-name">Order Matching Engine</h3><p class="proj-desc">High-performance limit order book in C++ supporting price-time priority matching. Uses absl::flat_hash_map for O(1) order lookup with cache-friendly memory layout — pointer-invalidation-safe under rehash for correctness in live trading.</p><div class="tag-row"><span class="tag">C++</span><span class="tag">Data Structures</span><span class="tag">absl</span><span class="tag">Low Latency</span></div><a href="https://github.com/architmang/Order-Matching-Engine" target="_blank" rel="noopener" class="proj-link" data-cursor="link">View code <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
-      <div class="proj-row reveal"><div class="proj-num-col">02</div><div class="proj-main"><canvas class="proj-canvas" id="pc2"></canvas><div class="proj-info"><h3 class="proj-name">Kalman Filter Pairs Trading</h3><p class="proj-desc">Pairs-trading engine estimating hedge ratio every 10 ms. 15–22% annualized returns, drawdowns cut 30% via smoothed Avg-Cov-Div signals and sub-millisecond Kalman cycles.</p><div class="tag-row"><span class="tag">Kalman Filter</span><span class="tag">Rolling OLS</span><span class="tag">Python</span><span class="tag">Backtesting</span></div><a href="https://github.com/architmang/kalman-filters" target="_blank" rel="noopener" class="proj-link" data-cursor="link">View code <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
-      <div class="proj-row reveal"><div class="proj-num-col">03</div><div class="proj-main"><canvas class="proj-canvas" id="pc3"></canvas><div class="proj-info"><h3 class="proj-name">ARMA Trading Strategy</h3><p class="proj-desc">ARMA model on AAPL via BackTrader. Sharpe ratio 1.5, 10% max-profit gain, 23% profit increase with RSI and MACD. Volatility benchmarked against S&amp;P 500 via ARCH.</p><div class="tag-row"><span class="tag">ARMA</span><span class="tag">ARCH</span><span class="tag">BackTrader</span><span class="tag">MACD</span></div><a href="https://github.com/architmang/Autoregressive-Moving-Average" target="_blank" rel="noopener" class="proj-link" data-cursor="link">View code <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
-      <div class="proj-row reveal"><div class="proj-num-col">04</div><div class="proj-main"><canvas class="proj-canvas" id="pc4"></canvas><div class="proj-info"><h3 class="proj-name">SQL Query Rewriter</h3><p class="proj-desc">Streamlit app for real-time relational algebra query optimization. Lex &amp; Yacc lexer/parser with a C++ query-tree engine achieving 3x speedup.</p><div class="tag-row"><span class="tag">C++</span><span class="tag">Lex &amp; Yacc</span><span class="tag">Streamlit</span></div></div></div></div>
-      <div class="proj-row reveal"><div class="proj-num-col">05</div><div class="proj-main"><canvas class="proj-canvas" id="pc5"></canvas><div class="proj-info"><h3 class="proj-name">Unix Shell and IPC</h3><p class="proj-desc">Full Unix shell in C++ with I/O redirection, piping, command history, squashbug malware detection, and shared-memory graph with 3x-optimized Dijkstra's.</p><div class="tag-row"><span class="tag">C++</span><span class="tag">Unix</span><span class="tag">IPC</span><span class="tag">Shared Memory</span></div></div></div></div>
-      <div class="proj-row reveal"><div class="proj-num-col">06</div><div class="proj-main"><canvas class="proj-canvas" id="pc6"></canvas><div class="proj-info"><h3 class="proj-name">MyHTTP TCP Browser</h3><p class="proj-desc">Concurrent CLI browser for HTTP/HTTPS file retrieval using OpenSSL. HTTP 1.1 server with GET/PUT, access logging, and status-code handling.</p><div class="tag-row"><span class="tag">C++</span><span class="tag">HTTP 1.1</span><span class="tag">OpenSSL</span><span class="tag">Networking</span></div><a href="https://github.com/architmang/MyHTTP" target="_blank" rel="noopener" class="proj-link" data-cursor="link">View code <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
+      <div class="proj-row reveal"><div class="proj-num-col">01</div><div class="proj-main"><canvas class="proj-canvas" id="pc1"></canvas><div class="proj-info"><h3 class="proj-name">Lock-Free Concurrency Toolkit</h3><p class="proj-desc">Bounded MPMC lock-free queue (Vyukov ring buffer) with cache-line padding to eliminate false sharing, and a sharded concurrent hash map with per-shard shared_mutex. Exponential backoff and cache prefetching on contended paths. Benchmarked 2.14x throughput vs mutex baseline under 4P/4C contention. Verified with multi-threaded stress tests asserting exact results under real concurrent access.</p><div class="tag-row"><span class="tag">C++17</span><span class="tag">Lock-Free</span><span class="tag">MPMC Queue</span><span class="tag">Cache Optimization</span><span class="tag">Concurrency</span></div><a href="https://github.com/architmang/Lock-Free-Concurrency-Toolkit" target="_blank" rel="noopener" class="proj-link" data-cursor="link">View code <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
+      <div class="proj-row reveal"><div class="proj-num-col">02</div><div class="proj-main"><canvas class="proj-canvas" id="pc2"></canvas><div class="proj-info"><h3 class="proj-name">Order Matching Engine</h3><p class="proj-desc">High-performance limit order book in C++ with price-time priority matching. Uses absl::flat_hash_map for O(1) order lookup with cache-friendly memory layout — pointer-invalidation-safe under rehash for correctness in live trading.</p><div class="tag-row"><span class="tag">C++</span><span class="tag">Data Structures</span><span class="tag">absl</span><span class="tag">Low Latency</span></div><a href="https://github.com/architmang/Order-Matching-Engine" target="_blank" rel="noopener" class="proj-link" data-cursor="link">View code <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
+      <div class="proj-row reveal"><div class="proj-num-col">03</div><div class="proj-main"><canvas class="proj-canvas" id="pc3"></canvas><div class="proj-info"><h3 class="proj-name">Kalman Filter Pairs Trading</h3><p class="proj-desc">Pairs-trading engine estimating hedge ratio every 10 ms. 15–22% annualized returns, drawdowns cut 30% via smoothed Avg-Cov-Div signals and sub-millisecond Kalman cycles.</p><div class="tag-row"><span class="tag">Kalman Filter</span><span class="tag">Rolling OLS</span><span class="tag">Python</span><span class="tag">Backtesting</span></div><a href="https://github.com/architmang/kalman-filters" target="_blank" rel="noopener" class="proj-link" data-cursor="link">View code <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
+      <div class="proj-row reveal"><div class="proj-num-col">04</div><div class="proj-main"><canvas class="proj-canvas" id="pc4"></canvas><div class="proj-info"><h3 class="proj-name">ARMA Trading Strategy</h3><p class="proj-desc">ARMA model on AAPL via BackTrader. Sharpe ratio 1.5, 10% max-profit gain, 23% profit increase with RSI and MACD. Volatility benchmarked against S&amp;P 500 via ARCH.</p><div class="tag-row"><span class="tag">ARMA</span><span class="tag">ARCH</span><span class="tag">BackTrader</span><span class="tag">MACD</span></div><a href="https://github.com/architmang/Autoregressive-Moving-Average" target="_blank" rel="noopener" class="proj-link" data-cursor="link">View code <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
+      <div class="proj-row reveal"><div class="proj-num-col">05</div><div class="proj-main"><canvas class="proj-canvas" id="pc5"></canvas><div class="proj-info"><h3 class="proj-name">SQL Query Rewriter</h3><p class="proj-desc">Streamlit app for real-time relational algebra query optimization. Lex &amp; Yacc lexer/parser with a C++ query-tree engine achieving 3x speedup.</p><div class="tag-row"><span class="tag">C++</span><span class="tag">Lex &amp; Yacc</span><span class="tag">Streamlit</span></div></div></div></div>
+      <div class="proj-row reveal"><div class="proj-num-col">06</div><div class="proj-main"><canvas class="proj-canvas" id="pc6"></canvas><div class="proj-info"><h3 class="proj-name">Unix Shell and IPC</h3><p class="proj-desc">Full Unix shell in C++ with I/O redirection, piping, command history, squashbug malware detection, and shared-memory graph with 3x-optimized Dijkstra's.</p><div class="tag-row"><span class="tag">C++</span><span class="tag">Unix</span><span class="tag">IPC</span><span class="tag">Shared Memory</span></div></div></div></div>
+      <div class="proj-row reveal"><div class="proj-num-col">07</div><div class="proj-main"><canvas class="proj-canvas" id="pc7"></canvas><div class="proj-info"><h3 class="proj-name">MyHTTP TCP Browser</h3><p class="proj-desc">Concurrent CLI browser for HTTP/HTTPS file retrieval using OpenSSL. HTTP 1.1 server with GET/PUT, access logging, and status-code handling.</p><div class="tag-row"><span class="tag">C++</span><span class="tag">HTTP 1.1</span><span class="tag">OpenSSL</span><span class="tag">Networking</span></div><a href="https://github.com/architmang/MyHTTP" target="_blank" rel="noopener" class="proj-link" data-cursor="link">View code <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
     </div>
   </div>
 </section>
@@ -237,78 +241,81 @@
     <div class="blog-grid">
 
       <article class="blog-card reveal">
-        <div class="blog-img-wrap"><img src="images/blog-kernel.svg" alt="Kernel Driver Development" class="blog-img"/><span class="blog-cat">Systems</span></div>
+        <div class="blog-img-wrap"><img src="images/blog-hashmap.svg" alt="Phaser Game Engine Ads" class="blog-img"/><span class="blog-cat">Mobile Engineering</span></div>
         <div class="blog-body">
-          <div class="blog-meta"><span>Jun 2025</span><span>5 min read</span></div>
-          <h3 class="blog-title">Real Skill in Linux Kernel Driver Development</h3>
-          <p class="blog-excerpt">The bug that disappears when you add logs is a concurrency bug. Why spinlock vs mutex, IRQ vs process context, and SMP memory ordering are what make kernel development genuinely hard.</p>
-          <div class="tag-row"><span class="tag">Linux Kernel</span><span class="tag">Concurrency</span><span class="tag">C</span><span class="tag">Drivers</span></div>
-          <a href="https://www.linkedin.com/feed/update/urn:li:activity:7383583277384785921/" target="_blank" rel="noopener" class="proj-link" data-cursor="link">Read on LinkedIn <i class="fa-solid fa-arrow-right"></i></a>
+          <div class="blog-meta"><span>2025</span><span>LinkedIn</span></div>
+          <h3 class="blog-title">How apps ship fully interactive, remotely updated ads without changing source code every time</h3>
+          <p class="blog-excerpt">Phaser.js — a fast, fun, and free open-source game engine — is how ad creatives become mini games that download fresh content at runtime. No app update needed, no store review cycle.</p>
+          <div class="tag-row"><span class="tag">Phaser</span><span class="tag">Mobile Ads</span><span class="tag">Game Engine</span><span class="tag">JS</span></div>
+          <a href="https://www.linkedin.com/posts/archit-mangrulkar-033327199_phaser-a-fast-fun-and-free-open-source-activity-7427680943307485184-qCPy" target="_blank" rel="noopener" class="proj-link" data-cursor="link">Read on LinkedIn <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </article>
 
       <article class="blog-card reveal">
-        <div class="blog-img-wrap"><img src="images/blog-camera.svg" alt="Camera Pipeline Samsung" class="blog-img"/><span class="blog-cat">Camera</span></div>
+        <div class="blog-img-wrap"><img src="images/blog-kernel.svg" alt="Windows file locking" class="blog-img"/><span class="blog-cat">OS Internals</span></div>
         <div class="blog-body">
-          <div class="blog-meta"><span>Jul 2025</span><span>6 min read</span></div>
-          <h3 class="blog-title">Inside Samsung's Camera Pipeline: 60fps, 8K, and 526µs Gyro Sampling</h3>
-          <p class="blog-excerpt">What it takes to ship Video Stabilization and Hyperlapse on Galaxy flagships — from 16.67 ms frame budgets to ARM SIMD accelerated optical flow at the metal level.</p>
-          <div class="tag-row"><span class="tag">C++</span><span class="tag">Camera HAL</span><span class="tag">ARM SIMD</span><span class="tag">OpenCL</span></div>
-          <a href="https://www.linkedin.com/feed/update/urn:li:activity:7385726942584627200/" target="_blank" rel="noopener" class="proj-link" data-cursor="link">Read on LinkedIn <i class="fa-solid fa-arrow-right"></i></a>
+          <div class="blog-meta"><span>2025</span><span>LinkedIn</span></div>
+          <h3 class="blog-title">Why does Windows block file renames or deletes while a file is open, unlike Unix?</h3>
+          <p class="blog-excerpt">Windows NTFS uses mandatory file locking at the kernel level — open handles hold exclusive access. Unix takes the opposite stance: unlink the directory entry and let the inode live until the last handle closes.</p>
+          <div class="tag-row"><span class="tag">Windows Kernel</span><span class="tag">NTFS</span><span class="tag">File Systems</span><span class="tag">Unix</span></div>
+          <a href="https://www.linkedin.com/posts/archit-mangrulkar-033327199_windows-kernel-ntfs-activity-7391591967257878529-d9Jr" target="_blank" rel="noopener" class="proj-link" data-cursor="link">Read on LinkedIn <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </article>
 
       <article class="blog-card reveal">
-        <div class="blog-img-wrap"><img src="images/blog-quantization.svg" alt="INT8 Quantization" class="blog-img"/><span class="blog-cat">ML Runtime</span></div>
+        <div class="blog-img-wrap"><img src="images/blog-trading.svg" alt="malloc internals" class="blog-img"/><span class="blog-cat">Memory Management</span></div>
         <div class="blog-body">
-          <div class="blog-meta"><span>Aug 2025</span><span>7 min read</span></div>
-          <h3 class="blog-title">72% Smaller, 15x Faster: INT8 Quantization for Edge Video Models</h3>
-          <p class="blog-excerpt">Taking a multi-branch video stability model from Python to C++/ONNX, slashing size via INT8 quantization, and replacing RAFT with NeuFlow v2 for 44x FLOPS reduction at the edge.</p>
-          <div class="tag-row"><span class="tag">ONNX</span><span class="tag">INT8</span><span class="tag">TFLite</span><span class="tag">Edge ML</span></div>
-          <a href="https://www.linkedin.com/feed/update/urn:li:activity:7391591967257878529/" target="_blank" rel="noopener" class="proj-link" data-cursor="link">Read on LinkedIn <i class="fa-solid fa-arrow-right"></i></a>
+          <div class="blog-meta"><span>2025</span><span>LinkedIn</span></div>
+          <h3 class="blog-title">What actually happens under the hood when you call malloc() on Linux?</h3>
+          <p class="blog-excerpt">malloc() is not a syscall — it's a user-space allocator managing memory it got from brk() or mmap(). Small allocations carve up arenas, large ones go straight to mmap, and jemalloc/tcmalloc change the whole story.</p>
+          <div class="tag-row"><span class="tag">Linux Kernel</span><span class="tag">Memory Management</span><span class="tag">C</span><span class="tag">Systems</span></div>
+          <a href="https://www.linkedin.com/posts/archit-mangrulkar-033327199_linuxkernel-memorymanagement-systemprogramming-activity-7385726942584627200-1EN0" target="_blank" rel="noopener" class="proj-link" data-cursor="link">Read on LinkedIn <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </article>
 
       <article class="blog-card reveal">
-        <div class="blog-img-wrap"><img src="images/blog-trading.svg" alt="Kalman Filter Trading" class="blog-img"/><span class="blog-cat">Quant Finance</span></div>
+        <div class="blog-img-wrap"><img src="images/blog-camera.svg" alt="std random_device" class="blog-img"/><span class="blog-cat">C++ Internals</span></div>
         <div class="blog-body">
-          <div class="blog-meta"><span>Sep 2025</span><span>8 min read</span></div>
-          <h3 class="blog-title">Kalman Filter Pairs Trading: 10ms Updates and 22% Returns</h3>
-          <p class="blog-excerpt">Building a real-time pairs-trading system where the Kalman filter estimates the hedge ratio at 10 ms cadence. Smoothed signals cut drawdowns 30%, sub-millisecond rolling OLS updates.</p>
-          <div class="tag-row"><span class="tag">Kalman Filter</span><span class="tag">Python</span><span class="tag">Quant</span><span class="tag">Backtesting</span></div>
-          <a href="https://www.linkedin.com/feed/update/urn:li:activity:7365129260447035392/" target="_blank" rel="noopener" class="proj-link" data-cursor="link">Read on LinkedIn <i class="fa-solid fa-arrow-right"></i></a>
+          <div class="blog-meta"><span>2025</span><span>LinkedIn</span></div>
+          <h3 class="blog-title">Where does std::random_device() actually get its randomness from?</h3>
+          <p class="blog-excerpt">On Linux it reads /dev/urandom, which is seeded by the kernel's entropy pool built from hardware interrupts and noise. On Windows it calls BCryptGenRandom. Neither is truly random — both are cryptographically secure PRNGs.</p>
+          <div class="tag-row"><span class="tag">C++</span><span class="tag">OS</span><span class="tag">Kernel</span><span class="tag">Cryptography</span></div>
+          <a href="https://www.linkedin.com/posts/archit-mangrulkar-033327199_cplusplus-operatingsystems-kerneldevelopment-activity-7383583277384785921-G9q9" target="_blank" rel="noopener" class="proj-link" data-cursor="link">Read on LinkedIn <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </article>
 
       <article class="blog-card reveal">
-        <div class="blog-img-wrap"><img src="images/blog-hashmap.svg" alt="Hash Map Performance" class="blog-img"/><span class="blog-cat">C++ Performance</span></div>
+        <div class="blog-img-wrap"><img src="images/blog-quantization.svg" alt="TPM Face ID after reboot" class="blog-img"/><span class="blog-cat">Security</span></div>
         <div class="blog-body">
-          <div class="blog-meta"><span>Oct 2025</span><span>5 min read</span></div>
-          <h3 class="blog-title">Cache Behavior is the Real Complexity: std::unordered_map vs absl::flat_hash_map</h3>
-          <p class="blog-excerpt">Two O(1) structures can differ 3x in latency because of how they touch memory. In a matching engine, pointer invalidation on rehash isn't a perf problem — it's a correctness disaster.</p>
-          <div class="tag-row"><span class="tag">C++</span><span class="tag">Performance</span><span class="tag">Cache</span><span class="tag">Data Structures</span></div>
-          <a href="https://www.linkedin.com/feed/update/urn:li:activity:7427680943307485184/" target="_blank" rel="noopener" class="proj-link" data-cursor="link">Read on LinkedIn <i class="fa-solid fa-arrow-right"></i></a>
+          <div class="blog-meta"><span>2025</span><span>LinkedIn</span></div>
+          <h3 class="blog-title">Why do phones require your passcode after a reboot instead of letting you use Face ID or fingerprint?</h3>
+          <p class="blog-excerpt">Biometrics only unlock a key already in memory. After a reboot, the secure enclave's decryption keys are gone — only your passcode can re-derive them and unseal the TPM. This is "Before First Unlock" protection.</p>
+          <div class="tag-row"><span class="tag">TPM</span><span class="tag">Secure Enclave</span><span class="tag">Biometrics</span><span class="tag">Security</span></div>
+          <a href="https://www.linkedin.com/posts/archit-mangrulkar-033327199_tpm-20-library-trusted-computing-group-activity-7365129260447035392-fdIG" target="_blank" rel="noopener" class="proj-link" data-cursor="link">Read on LinkedIn <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </article>
 
     </div><!-- /blog-grid -->
+  </div>
+</section>
 
-    <!-- Personal posts -->
-    <div class="section-divider"></div>
-    <div class="page-eyebrow" style="margin-top:3rem">Beyond the code</div>
-    <h2 class="page-title" style="margin-bottom:2rem">PERSONAL</h2>
+<!-- ═══ PERSONAL ═══ -->
+<section id="tab-personal" class="tab">
+  <div class="page">
+    <div class="page-eyebrow">Beyond the code</div>
+    <h2 class="page-title">PERSONAL</h2>
     <div class="blog-grid">
 
       <article class="blog-card reveal">
         <div class="blog-img-wrap">
-          <!-- REPLACE: src="images/personal-choithram.jpg" — photo from the school visit -->
+          <!-- REPLACE: src="images/personal-choithram.jpg" -->
           <img src="images/blog-kernel.svg" alt="Choithram School visit" class="blog-img"/>
           <span class="blog-cat">Giving Back</span>
         </div>
         <div class="blog-body">
           <div class="blog-meta"><span>2025</span><span>School visit</span></div>
           <h3 class="blog-title">Back to My Roots: Choithram School, Indore</h3>
-          <p class="blog-excerpt">Visited my alma mater to guide high school students on career paths beyond traditional engineering — from AI and Cybersecurity to Product Management and Research. Conversations that I wish someone had with me at 17.</p>
+          <p class="blog-excerpt">Visited my alma mater to guide high school students on career paths beyond traditional engineering — from AI and Cybersecurity to Product Management and Research. Conversations I wish someone had with me at 17.</p>
           <div class="tag-row"><span class="tag">Mentorship</span><span class="tag">Careers</span><span class="tag">Education</span></div>
           <a href="https://www.linkedin.com/posts/neeta-mehta-2b0b931a0_career-conversations-that-inspire-our-students-ugcPost-7477309124729556992-1YjI" target="_blank" rel="noopener" class="proj-link" data-cursor="link">See post <i class="fa-solid fa-arrow-right"></i></a>
         </div>
@@ -316,14 +323,14 @@
 
       <article class="blog-card reveal">
         <div class="blog-img-wrap">
-          <!-- REPLACE: src="images/personal-quantbook.jpg" — cover of the Quant Book -->
+          <!-- REPLACE: src="images/personal-quantbook.jpg" -->
           <img src="images/blog-trading.svg" alt="Quant Book" class="blog-img"/>
           <span class="blog-cat">Publication</span>
         </div>
         <div class="blog-body">
           <div class="blog-meta"><span>2024</span><span>IIT KGP Quant Club</span></div>
           <h3 class="blog-title">QuantBook — Ideas from the World of Quantitative Finance</h3>
-          <p class="blog-excerpt">Contributed to a compilation of ideas from quantitative finance put together by the Quant Club at IIT Kharagpur — covering systematic strategies, factor models, and market microstructure.</p>
+          <p class="blog-excerpt">Contributed to a compilation of ideas from quantitative finance by the Quant Club at IIT Kharagpur — covering systematic strategies, factor models, and market microstructure.</p>
           <div class="tag-row"><span class="tag">Quant Finance</span><span class="tag">IIT KGP</span><span class="tag">Research</span></div>
           <a href="https://www.linkedin.com/posts/qciitkgp_quantbook-activity-7440359526177853440-3QYk" target="_blank" rel="noopener" class="proj-link" data-cursor="link">See post <i class="fa-solid fa-arrow-right"></i></a>
         </div>
@@ -331,14 +338,14 @@
 
       <article class="blog-card reveal">
         <div class="blog-img-wrap">
-          <!-- REPLACE: src="images/personal-interns.jpg" — Samsung intern onboarding photo -->
+          <!-- REPLACE: src="images/personal-interns.jpg" -->
           <img src="images/exp-samsung.jpg" alt="Samsung interns IIT KGP" class="blog-img"/>
           <span class="blog-cat">Community</span>
         </div>
         <div class="blog-body">
           <div class="blog-meta"><span>2024</span><span>Samsung R&amp;D India</span></div>
           <h3 class="blog-title">Connecting with Interns from IIT Kharagpur at Samsung R&amp;D</h3>
-          <p class="blog-excerpt">Met and connected with the new batch of onboarding interns from my alma mater at Samsung Research India — sharing experiences, navigating corporate research, and keeping the KGP network alive.</p>
+          <p class="blog-excerpt">Met the new batch of onboarding interns from my alma mater at Samsung Research India — sharing experiences, navigating corporate research, and keeping the KGP network alive.</p>
           <div class="tag-row"><span class="tag">Samsung</span><span class="tag">IIT KGP</span><span class="tag">Internship</span></div>
           <a href="https://www.linkedin.com/posts/samsungrndindiabangalore_magpie-peopleofsrib-internship-activity-7462404937751314433-os0q" target="_blank" rel="noopener" class="proj-link" data-cursor="link">See post <i class="fa-solid fa-arrow-right"></i></a>
         </div>
@@ -346,16 +353,45 @@
 
       <article class="blog-card reveal">
         <div class="blog-img-wrap">
-          <!-- REPLACE: src="images/personal-innovation.jpg" — Samsung innovation event photo -->
+          <!-- REPLACE: src="images/personal-innovation.jpg" -->
           <img src="images/blog-camera.svg" alt="Samsung Innovation" class="blog-img"/>
           <span class="blog-cat">Innovation</span>
         </div>
         <div class="blog-body">
           <div class="blog-meta"><span>2024</span><span>Samsung R&amp;D India</span></div>
           <h3 class="blog-title">'What if' Your Idea is the Next Breakthrough?</h3>
-          <p class="blog-excerpt">Samsung R&amp;D India's culture of innovation in action — the internal ideation programs that encourage engineers to think beyond the immediate problem and ask the bigger question.</p>
+          <p class="blog-excerpt">Samsung R&amp;D India's culture of innovation — the internal ideation programs that encourage engineers to think beyond the immediate problem and ask the bigger question.</p>
           <div class="tag-row"><span class="tag">Innovation</span><span class="tag">Samsung</span><span class="tag">R&amp;D Culture</span></div>
           <a href="https://www.linkedin.com/posts/samsungrndindiabangalore_innovationatsrib-activity-7323263114295001088-e16d" target="_blank" rel="noopener" class="proj-link" data-cursor="link">See post <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <article class="blog-card reveal">
+        <div class="blog-img-wrap">
+          <!-- REPLACE: src="images/basketball.jpg" — photo from your basketball games in Bangalore -->
+          <img src="images/basketball.svg" alt="Basketball Bangalore" class="blog-img"/>
+          <span class="blog-cat">Life</span>
+        </div>
+        <div class="blog-body">
+          <div class="blog-meta"><span>2025</span><span>Playo</span></div>
+          <h3 class="blog-title">Completed 100+ Playo Games: Basketball in Bangalore</h3>
+          <p class="blog-excerpt">Crossed the 100-game milestone on Playo — pickup basketball across Bangalore's courts. Some of the best conversations and worst jump shots happen on a court at 7am.</p>
+          <div class="tag-row"><span class="tag">Basketball</span><span class="tag">Bangalore</span><span class="tag">Playo</span></div>
+        </div>
+      </article>
+
+      <article class="blog-card reveal">
+        <div class="blog-img-wrap">
+          <!-- REPLACE: src="images/personal-christmas.jpg" — a festive or historical image -->
+          <img src="images/blog-hashmap.svg" alt="Origin of Christmas" class="blog-img"/>
+          <span class="blog-cat">Curiosity</span>
+        </div>
+        <div class="blog-body">
+          <div class="blog-meta"><span>Dec 2025</span><span>X thread</span></div>
+          <h3 class="blog-title">The Story of Christmas: Where Did It Actually Come From?</h3>
+          <p class="blog-excerpt">Dec 25 wasn't always about Christ. Early Christianity absorbed the Roman Saturnalia and the Germanic Yule. The modern Christmas — trees, gifts, Santa — is largely a 19th-century reinvention, shaped more by Dickens and Coca-Cola than ancient tradition.</p>
+          <div class="tag-row"><span class="tag">History</span><span class="tag">Curiosity</span><span class="tag">Culture</span></div>
+          <a href="https://x.com/archit_mang01/status/1950287722930938317" target="_blank" rel="noopener" class="proj-link" data-cursor="link">Read on X <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </article>
 
@@ -392,6 +428,7 @@
           <li><i class="fa-solid fa-location-dot"></i><span>Bangalore, India</span></li>
           <li><i class="fa-brands fa-github"></i><a href="https://github.com/architmang" target="_blank" rel="noopener">github.com/architmang</a></li>
           <li><i class="fa-brands fa-linkedin"></i><a href="https://www.linkedin.com/in/archit-mangrulkar-033327199/" target="_blank" rel="noopener">linkedin.com/in/archit-mangrulkar</a></li>
+          <li><i class="fa-brands fa-x-twitter"></i><a href="https://x.com/archit_mang01" target="_blank" rel="noopener">x.com/archit_mang01</a></li>
         </ul>
         <a href="resume.pdf" download class="cta-primary" style="margin-top:1.75rem;display:inline-flex" data-cursor="link"><i class="fa-solid fa-download"></i> Download Resume</a>
       </div>
