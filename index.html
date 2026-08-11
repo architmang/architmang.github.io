@@ -59,7 +59,7 @@
   <canvas id="three-canvas"></canvas>
   <div class="hero-grid">
     <div class="hero-photo-col">
-      <!-- REPLACE: src="images/profile.jpg" — tall portrait, dark background -->
+      <!-- REPLACE: src="images/profile.jpg", tall portrait, dark background -->
       <img src="images/profile.jpg" alt="Archit Mangrulkar" class="hero-portrait"/>
       <div class="hero-social-strip">
         <a href="https://github.com/architmang" target="_blank" rel="noopener" data-cursor="link"><i class="fa-brands fa-github"></i></a>
@@ -180,7 +180,7 @@
     <h2 class="page-title">PROJECTS</h2>
     <div class="proj-list">
       <div class="proj-row reveal"><div class="proj-num-col">01</div><div class="proj-main"><canvas class="proj-canvas" id="pc1"></canvas><div class="proj-info"><h3 class="proj-name">Lock-Free Concurrency Toolkit</h3><p class="proj-desc">Bounded MPMC lock-free queue (Vyukov ring buffer) with cache-line padding to eliminate false sharing, and a sharded concurrent hash map with per-shard shared_mutex. Exponential backoff and cache prefetching on contended paths. Benchmarked 2.14x throughput vs mutex baseline under 4P/4C contention. Verified with multi-threaded stress tests asserting exact results under real concurrent access.</p><div class="tag-row"><span class="tag">C++17</span><span class="tag">Lock-Free</span><span class="tag">MPMC Queue</span><span class="tag">Cache Optimization</span><span class="tag">Concurrency</span></div><a href="https://github.com/architmang/Lock-Free-Concurrency-Toolkit" target="_blank" rel="noopener" class="proj-link" data-cursor="link">View code <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
-      <div class="proj-row reveal"><div class="proj-num-col">02</div><div class="proj-main"><canvas class="proj-canvas" id="pc2"></canvas><div class="proj-info"><h3 class="proj-name">Order Matching Engine</h3><p class="proj-desc">High-performance limit order book in C++ with price-time priority matching. Uses absl::flat_hash_map for O(1) order lookup with cache-friendly memory layout — pointer-invalidation-safe under rehash for correctness in live trading.</p><div class="tag-row"><span class="tag">C++</span><span class="tag">Data Structures</span><span class="tag">absl</span><span class="tag">Low Latency</span></div><a href="https://github.com/architmang/Order-Matching-Engine" target="_blank" rel="noopener" class="proj-link" data-cursor="link">View code <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
+      <div class="proj-row reveal"><div class="proj-num-col">02</div><div class="proj-main"><canvas class="proj-canvas" id="pc2"></canvas><div class="proj-info"><h3 class="proj-name">Order Matching Engine</h3><p class="proj-desc">High-performance limit order book in C++ with price-time priority matching. Uses absl::flat_hash_map for O(1) order lookup with cache-friendly memory layout, pointer-invalidation-safe under rehash for correctness in live trading.</p><div class="tag-row"><span class="tag">C++</span><span class="tag">Data Structures</span><span class="tag">absl</span><span class="tag">Low Latency</span></div><a href="https://github.com/architmang/Order-Matching-Engine" target="_blank" rel="noopener" class="proj-link" data-cursor="link">View code <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
       <div class="proj-row reveal"><div class="proj-num-col">03</div><div class="proj-main"><canvas class="proj-canvas" id="pc3"></canvas><div class="proj-info"><h3 class="proj-name">Kalman Filter Pairs Trading</h3><p class="proj-desc">Pairs-trading engine estimating hedge ratio every 10 ms. 15–22% annualized returns, drawdowns cut 30% via smoothed Avg-Cov-Div signals and sub-millisecond Kalman cycles.</p><div class="tag-row"><span class="tag">Kalman Filter</span><span class="tag">Rolling OLS</span><span class="tag">Python</span><span class="tag">Backtesting</span></div><a href="https://github.com/architmang/kalman-filters" target="_blank" rel="noopener" class="proj-link" data-cursor="link">View code <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
       <div class="proj-row reveal"><div class="proj-num-col">04</div><div class="proj-main"><canvas class="proj-canvas" id="pc4"></canvas><div class="proj-info"><h3 class="proj-name">ARMA Trading Strategy</h3><p class="proj-desc">ARMA model on AAPL via BackTrader. Sharpe ratio 1.5, 10% max-profit gain, 23% profit increase with RSI and MACD. Volatility benchmarked against S&amp;P 500 via ARCH.</p><div class="tag-row"><span class="tag">ARMA</span><span class="tag">ARCH</span><span class="tag">BackTrader</span><span class="tag">MACD</span></div><a href="https://github.com/architmang/Autoregressive-Moving-Average" target="_blank" rel="noopener" class="proj-link" data-cursor="link">View code <i class="fa-solid fa-arrow-right"></i></a></div></div></div>
       <div class="proj-row reveal"><div class="proj-num-col">05</div><div class="proj-main"><canvas class="proj-canvas" id="pc5"></canvas><div class="proj-info"><h3 class="proj-name">SQL Query Rewriter</h3><p class="proj-desc">Streamlit app for real-time relational algebra query optimization. Lex &amp; Yacc lexer/parser with a C++ query-tree engine achieving 3x speedup.</p><div class="tag-row"><span class="tag">C++</span><span class="tag">Lex &amp; Yacc</span><span class="tag">Streamlit</span></div></div></div></div>
@@ -204,12 +204,12 @@
       <article class="pub-item reveal">
         <!-- REPLACE: src="images/research-vrl.jpg" -->
         <img src="images/research-vrl.jpg" alt="VRL paper" class="pub-img"/>
-        <div class="pub-meta"><span class="pub-badge submitted">ECCV 2026 · Under review</span><h3 class="pub-title">Real-World Video Representation Learning (VRL)</h3><p class="pub-body">Multi-branch video stability model in C++/ONNX with 15x speedup. Model size cut 72% via INT8 quantization. Replaced RAFT with NeuFlow v2 for 44x FLOPS reduction on-device.</p><div class="pub-hls"><span>15x speedup</span><span>72% smaller</span><span>44x FLOPS reduction</span></div></div>
+        <div class="pub-meta"><span class="pub-badge submitted">AAAI 2026 · The 41st Annual AAAI Conference on Artificial Intelligence</span><h3 class="pub-title">Real-World Video Representation Learning (VRL)</h3><p class="pub-body">Multi-branch video stability model in C++/ONNX with 15x speedup. Model size cut 72% via INT8 quantization. Replaced RAFT with NeuFlow v2 for 44x FLOPS reduction on-device.</p><div class="pub-hls"><span>15x speedup</span><span>72% smaller</span><span>44x FLOPS reduction</span></div></div>
       </article>
       <article class="pub-item reveal">
         <!-- REPLACE: src="images/research-coling.jpg" -->
         <img src="images/research-coling.jpg" alt="COLING paper" class="pub-img"/>
-        <div class="pub-meta"><span class="pub-badge accepted">COLING 2022 · Accepted</span><h3 class="pub-title">Stance and Premise Detection in COVID Tweets</h3><p class="pub-body">BERT, RoBERTa, BART, DeBERTa with dependency parse trees and TF-IDF. Supervised contrastive loss beat baseline by 40%, achieving first place on the leaderboard.</p><div class="pub-hls"><span>+40% over baseline</span><span>Leaderboard #1</span><span>Transformers</span></div></div>
+        <div class="pub-meta"><span class="pub-badge accepted">COLING 2022 · Accepted</span><h3 class="pub-title">Stance and Premise Detection in COVID Tweets</h3><p class="pub-body">BERT, RoBERTa, BART, DeBERTa with dependency parse trees and TF-IDF. Supervised contrastive loss beat baseline by 40%, achieving first place on the leaderboard.</p><div class="pub-hls"><span>+40% over baseline</span><span>Leaderboard #1</span><span>Transformers</span></div><div class="pub-links" style="margin-top:.9rem;display:flex;gap:1rem;flex-wrap:wrap"><a href="https://aclanthology.org/2022.smm4h-1.42/" target="_blank" rel="noopener" class="proj-link" data-cursor="link"><i class="fa-solid fa-file-lines"></i> Paper <i class="fa-solid fa-arrow-right"></i></a><a href="https://github.com/architmang/enolp_musk-SMM4H_COLING2022" target="_blank" rel="noopener" class="proj-link" data-cursor="link"><i class="fa-brands fa-github"></i> Code <i class="fa-solid fa-arrow-right"></i></a></div></div>
       </article>
     </div>
   </div>
@@ -234,68 +234,66 @@
 <!-- ═══ BLOG ═══ -->
 <section id="tab-blog" class="tab">
   <div class="page">
-
-    <!-- Technical posts -->
     <div class="page-eyebrow">Technical writing</div>
     <h2 class="page-title">BLOG</h2>
     <div class="blog-grid">
 
       <article class="blog-card reveal">
-        <div class="blog-img-wrap"><img src="images/blog-hashmap.svg" alt="Phaser Game Engine Ads" class="blog-img"/><span class="blog-cat">Mobile Engineering</span></div>
+        <div class="blog-img-wrap"><canvas class="blog-canvas" id="bc1"></canvas><span class="blog-cat">Mobile Engineering</span></div>
         <div class="blog-body">
           <div class="blog-meta"><span>2025</span><span>LinkedIn</span></div>
           <h3 class="blog-title">How apps ship fully interactive, remotely updated ads without changing source code every time</h3>
-          <p class="blog-excerpt">Phaser.js — a fast, fun, and free open-source game engine — is how ad creatives become mini games that download fresh content at runtime. No app update needed, no store review cycle.</p>
+          <p class="blog-excerpt">Phaser.js is how ad creatives become mini games that download fresh content at runtime. No app update needed, no store review cycle. The creative lives on a CDN; the engine lives in the app.</p>
           <div class="tag-row"><span class="tag">Phaser</span><span class="tag">Mobile Ads</span><span class="tag">Game Engine</span><span class="tag">JS</span></div>
           <a href="https://www.linkedin.com/posts/archit-mangrulkar-033327199_phaser-a-fast-fun-and-free-open-source-activity-7427680943307485184-qCPy" target="_blank" rel="noopener" class="proj-link" data-cursor="link">Read on LinkedIn <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </article>
 
       <article class="blog-card reveal">
-        <div class="blog-img-wrap"><img src="images/blog-kernel.svg" alt="Windows file locking" class="blog-img"/><span class="blog-cat">OS Internals</span></div>
+        <div class="blog-img-wrap"><canvas class="blog-canvas" id="bc2"></canvas><span class="blog-cat">OS Internals</span></div>
         <div class="blog-body">
           <div class="blog-meta"><span>2025</span><span>LinkedIn</span></div>
           <h3 class="blog-title">Why does Windows block file renames or deletes while a file is open, unlike Unix?</h3>
-          <p class="blog-excerpt">Windows NTFS uses mandatory file locking at the kernel level — open handles hold exclusive access. Unix takes the opposite stance: unlink the directory entry and let the inode live until the last handle closes.</p>
+          <p class="blog-excerpt">Windows NTFS uses mandatory file locking at the kernel level. Open handles hold exclusive access. Unix takes the opposite stance: unlink the directory entry and let the inode live until the last handle closes.</p>
           <div class="tag-row"><span class="tag">Windows Kernel</span><span class="tag">NTFS</span><span class="tag">File Systems</span><span class="tag">Unix</span></div>
           <a href="https://www.linkedin.com/posts/archit-mangrulkar-033327199_windows-kernel-ntfs-activity-7391591967257878529-d9Jr" target="_blank" rel="noopener" class="proj-link" data-cursor="link">Read on LinkedIn <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </article>
 
       <article class="blog-card reveal">
-        <div class="blog-img-wrap"><img src="images/blog-trading.svg" alt="malloc internals" class="blog-img"/><span class="blog-cat">Memory Management</span></div>
+        <div class="blog-img-wrap"><canvas class="blog-canvas" id="bc3"></canvas><span class="blog-cat">Memory Management</span></div>
         <div class="blog-body">
           <div class="blog-meta"><span>2025</span><span>LinkedIn</span></div>
           <h3 class="blog-title">What actually happens under the hood when you call malloc() on Linux?</h3>
-          <p class="blog-excerpt">malloc() is not a syscall — it's a user-space allocator managing memory it got from brk() or mmap(). Small allocations carve up arenas, large ones go straight to mmap, and jemalloc/tcmalloc change the whole story.</p>
+          <p class="blog-excerpt">malloc() is not a syscall. It is a user-space allocator managing memory it got from brk() or mmap(). Small allocations carve up arenas, large ones go straight to mmap, and jemalloc/tcmalloc change the whole story.</p>
           <div class="tag-row"><span class="tag">Linux Kernel</span><span class="tag">Memory Management</span><span class="tag">C</span><span class="tag">Systems</span></div>
           <a href="https://www.linkedin.com/posts/archit-mangrulkar-033327199_linuxkernel-memorymanagement-systemprogramming-activity-7385726942584627200-1EN0" target="_blank" rel="noopener" class="proj-link" data-cursor="link">Read on LinkedIn <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </article>
 
       <article class="blog-card reveal">
-        <div class="blog-img-wrap"><img src="images/blog-camera.svg" alt="std random_device" class="blog-img"/><span class="blog-cat">C++ Internals</span></div>
+        <div class="blog-img-wrap"><canvas class="blog-canvas" id="bc4"></canvas><span class="blog-cat">C++ Internals</span></div>
         <div class="blog-body">
           <div class="blog-meta"><span>2025</span><span>LinkedIn</span></div>
           <h3 class="blog-title">Where does std::random_device() actually get its randomness from?</h3>
-          <p class="blog-excerpt">On Linux it reads /dev/urandom, which is seeded by the kernel's entropy pool built from hardware interrupts and noise. On Windows it calls BCryptGenRandom. Neither is truly random — both are cryptographically secure PRNGs.</p>
+          <p class="blog-excerpt">On Linux it reads /dev/urandom, seeded by the kernel entropy pool built from hardware interrupts and noise. On Windows it calls BCryptGenRandom. Neither is truly random; both are cryptographically secure PRNGs.</p>
           <div class="tag-row"><span class="tag">C++</span><span class="tag">OS</span><span class="tag">Kernel</span><span class="tag">Cryptography</span></div>
           <a href="https://www.linkedin.com/posts/archit-mangrulkar-033327199_cplusplus-operatingsystems-kerneldevelopment-activity-7383583277384785921-G9q9" target="_blank" rel="noopener" class="proj-link" data-cursor="link">Read on LinkedIn <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </article>
 
       <article class="blog-card reveal">
-        <div class="blog-img-wrap"><img src="images/blog-quantization.svg" alt="TPM Face ID after reboot" class="blog-img"/><span class="blog-cat">Security</span></div>
+        <div class="blog-img-wrap"><canvas class="blog-canvas" id="bc5"></canvas><span class="blog-cat">Security</span></div>
         <div class="blog-body">
           <div class="blog-meta"><span>2025</span><span>LinkedIn</span></div>
           <h3 class="blog-title">Why do phones require your passcode after a reboot instead of letting you use Face ID or fingerprint?</h3>
-          <p class="blog-excerpt">Biometrics only unlock a key already in memory. After a reboot, the secure enclave's decryption keys are gone — only your passcode can re-derive them and unseal the TPM. This is "Before First Unlock" protection.</p>
+          <p class="blog-excerpt">Biometrics only unlock a key already in memory. After a reboot, the secure enclave decryption keys are gone. Only your passcode can re-derive them and unseal the TPM. This is Before First Unlock protection.</p>
           <div class="tag-row"><span class="tag">TPM</span><span class="tag">Secure Enclave</span><span class="tag">Biometrics</span><span class="tag">Security</span></div>
           <a href="https://www.linkedin.com/posts/archit-mangrulkar-033327199_tpm-20-library-trusted-computing-group-activity-7365129260447035392-fdIG" target="_blank" rel="noopener" class="proj-link" data-cursor="link">Read on LinkedIn <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </article>
 
-    </div><!-- /blog-grid -->
+    </div>
   </div>
 </section>
 
@@ -315,7 +313,7 @@
         <div class="blog-body">
           <div class="blog-meta"><span>2025</span><span>School visit</span></div>
           <h3 class="blog-title">Back to My Roots: Choithram School, Indore</h3>
-          <p class="blog-excerpt">Visited my alma mater to guide high school students on career paths beyond traditional engineering — from AI and Cybersecurity to Product Management and Research. Conversations I wish someone had with me at 17.</p>
+          <p class="blog-excerpt">Visited my alma mater to guide high school students on career paths beyond traditional engineering, from AI and Cybersecurity to Product Management and Research. Conversations I wish someone had with me at 17.</p>
           <div class="tag-row"><span class="tag">Mentorship</span><span class="tag">Careers</span><span class="tag">Education</span></div>
           <a href="https://www.linkedin.com/posts/neeta-mehta-2b0b931a0_career-conversations-that-inspire-our-students-ugcPost-7477309124729556992-1YjI" target="_blank" rel="noopener" class="proj-link" data-cursor="link">See post <i class="fa-solid fa-arrow-right"></i></a>
         </div>
@@ -329,8 +327,8 @@
         </div>
         <div class="blog-body">
           <div class="blog-meta"><span>2024</span><span>IIT KGP Quant Club</span></div>
-          <h3 class="blog-title">QuantBook — Ideas from the World of Quantitative Finance</h3>
-          <p class="blog-excerpt">Contributed to a compilation of ideas from quantitative finance by the Quant Club at IIT Kharagpur — covering systematic strategies, factor models, and market microstructure.</p>
+          <h3 class="blog-title">QuantBook, Ideas from the World of Quantitative Finance</h3>
+          <p class="blog-excerpt">Contributed to a compilation of ideas from quantitative finance by the Quant Club at IIT Kharagpur, covering systematic strategies, factor models, and market microstructure.</p>
           <div class="tag-row"><span class="tag">Quant Finance</span><span class="tag">IIT KGP</span><span class="tag">Research</span></div>
           <a href="https://www.linkedin.com/posts/qciitkgp_quantbook-activity-7440359526177853440-3QYk" target="_blank" rel="noopener" class="proj-link" data-cursor="link">See post <i class="fa-solid fa-arrow-right"></i></a>
         </div>
@@ -345,7 +343,7 @@
         <div class="blog-body">
           <div class="blog-meta"><span>2024</span><span>Samsung R&amp;D India</span></div>
           <h3 class="blog-title">Connecting with Interns from IIT Kharagpur at Samsung R&amp;D</h3>
-          <p class="blog-excerpt">Met the new batch of onboarding interns from my alma mater at Samsung Research India — sharing experiences, navigating corporate research, and keeping the KGP network alive.</p>
+          <p class="blog-excerpt">Met the new batch of onboarding interns from my alma mater at Samsung Research India, sharing experiences, navigating corporate research, and keeping the KGP network alive.</p>
           <div class="tag-row"><span class="tag">Samsung</span><span class="tag">IIT KGP</span><span class="tag">Internship</span></div>
           <a href="https://www.linkedin.com/posts/samsungrndindiabangalore_magpie-peopleofsrib-internship-activity-7462404937751314433-os0q" target="_blank" rel="noopener" class="proj-link" data-cursor="link">See post <i class="fa-solid fa-arrow-right"></i></a>
         </div>
@@ -360,7 +358,7 @@
         <div class="blog-body">
           <div class="blog-meta"><span>2024</span><span>Samsung R&amp;D India</span></div>
           <h3 class="blog-title">'What if' Your Idea is the Next Breakthrough?</h3>
-          <p class="blog-excerpt">Samsung R&amp;D India's culture of innovation — the internal ideation programs that encourage engineers to think beyond the immediate problem and ask the bigger question.</p>
+          <p class="blog-excerpt">Samsung R&amp;D India's culture of innovation, the internal ideation programs that encourage engineers to think beyond the immediate problem and ask the bigger question.</p>
           <div class="tag-row"><span class="tag">Innovation</span><span class="tag">Samsung</span><span class="tag">R&amp;D Culture</span></div>
           <a href="https://www.linkedin.com/posts/samsungrndindiabangalore_innovationatsrib-activity-7323263114295001088-e16d" target="_blank" rel="noopener" class="proj-link" data-cursor="link">See post <i class="fa-solid fa-arrow-right"></i></a>
         </div>
@@ -368,30 +366,45 @@
 
       <article class="blog-card reveal">
         <div class="blog-img-wrap">
-          <!-- REPLACE: src="images/basketball.jpg" — photo from your basketball games in Bangalore -->
+          <!-- REPLACE: src="images/basketball.jpg", photo from your basketball games in Bangalore -->
           <img src="images/basketball.svg" alt="Basketball Bangalore" class="blog-img"/>
           <span class="blog-cat">Life</span>
         </div>
         <div class="blog-body">
           <div class="blog-meta"><span>2025</span><span>Playo</span></div>
           <h3 class="blog-title">Completed 100+ Playo Games: Basketball in Bangalore</h3>
-          <p class="blog-excerpt">Crossed the 100-game milestone on Playo — pickup basketball across Bangalore's courts. Some of the best conversations and worst jump shots happen on a court at 7am.</p>
+          <p class="blog-excerpt">Crossed the 100-game milestone on Playo, pickup basketball across Bangalore's courts. Some of the best conversations and worst jump shots happen on a court at 7am.</p>
           <div class="tag-row"><span class="tag">Basketball</span><span class="tag">Bangalore</span><span class="tag">Playo</span></div>
-        </div>
-      </article>
+          <a href="https://playo.co/profile/Archit-02ffee" target="_blank" rel="noopener" class="proj-link" data-cursor="link">View Playo profile <i class="fa-solid fa-arrow-right"></i></a>
 
       <article class="blog-card reveal">
         <div class="blog-img-wrap">
-          <!-- REPLACE: src="images/personal-christmas.jpg" — a festive or historical image -->
+          <!-- REPLACE: src="images/personal-christmas.jpg", a festive or historical image -->
           <img src="images/blog-hashmap.svg" alt="Origin of Christmas" class="blog-img"/>
           <span class="blog-cat">Curiosity</span>
         </div>
         <div class="blog-body">
           <div class="blog-meta"><span>Dec 2025</span><span>X thread</span></div>
           <h3 class="blog-title">The Story of Christmas: Where Did It Actually Come From?</h3>
-          <p class="blog-excerpt">Dec 25 wasn't always about Christ. Early Christianity absorbed the Roman Saturnalia and the Germanic Yule. The modern Christmas — trees, gifts, Santa — is largely a 19th-century reinvention, shaped more by Dickens and Coca-Cola than ancient tradition.</p>
+          <p class="blog-excerpt">Dec 25 wasn't always about Christ. Early Christianity absorbed the Roman Saturnalia and the Germanic Yule. The modern Christmas, trees, gifts, Santa, is largely a 19th-century reinvention, shaped more by Dickens and Coca-Cola than ancient tradition.</p>
           <div class="tag-row"><span class="tag">History</span><span class="tag">Curiosity</span><span class="tag">Culture</span></div>
           <a href="https://x.com/archit_mang01/status/1950287722930938317" target="_blank" rel="noopener" class="proj-link" data-cursor="link">Read on X <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+
+      <article class="blog-card reveal">
+        <div class="blog-img-wrap">
+          <!-- REPLACE: src="images/personal-feature-friday.jpg" — photo from the Feature Friday event at UAlberta -->
+          <img src="images/personal-feature-friday.svg" alt="Feature Friday University of Alberta" class="blog-img"/>
+          <span class="blog-cat">Research Life</span>
+        </div>
+        <div class="blog-body">
+          <div class="blog-meta"><span>2023</span><span>Edmonton, Canada</span></div>
+          <h3 class="blog-title">Feature Friday at the University of Alberta</h3>
+          <p class="blog-excerpt">Featured at the Vision and Learning Lab's weekly research showcase during my MITACS internship at UAlberta. Presented the multimodal motion capture pipeline and the 3D human pose tracking module built that summer.</p>
+          <div class="tag-row"><span class="tag">Research</span><span class="tag">UAlberta</span><span class="tag">MITACS</span><span class="tag">Computer Vision</span></div>
+          <a href="https://www.instagram.com/p/Cu93RyMrJIg/" target="_blank" rel="noopener" class="proj-link" data-cursor="link">See post <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </article>
 

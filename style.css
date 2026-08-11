@@ -365,6 +365,9 @@ body.cursor-link #cursor-follower { width:48px; height:48px; border-color:rgba(5
 .blog-title { font-family:var(--display); font-size:.95rem; font-weight:700; color:var(--white); margin-bottom:.5rem; line-height:1.35; }
 .blog-excerpt { font-size:.82rem; color:var(--muted); line-height:1.7; margin-bottom:.9rem; flex:1; }
 
+/* Blog canvas illustrations */
+.blog-canvas { width:100%; aspect-ratio:16/9; display:block; }
+
 /* ════ CV ════ */
 .cv-actions { display:flex; gap:1rem; margin-bottom:1.5rem; }
 .cv-shell { position:relative; border:1px solid var(--border); border-radius:6px; overflow:hidden; min-height:75vh; }

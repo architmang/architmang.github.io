@@ -25,24 +25,18 @@ function showTab(name) {
   const target = document.getElementById('tab-' + name);
   if (!target) return;
   target.classList.add('active');
-
-  // Scroll to top of page content (below nav)
   window.scrollTo({ top: 0, behavior: 'instant' });
-
   document.querySelectorAll('[data-tab]').forEach(a =>
     a.classList.toggle('active', a.dataset.tab === name));
   setTimeout(triggerReveal, 80);
   if (name === 'projects') setTimeout(drawAllCanvases, 150);
+  if (name === 'blog')     setTimeout(drawAllBlogCanvases, 150);
   if (name === 'skills')   setTimeout(animSkillTags, 400);
-
-  // Auto-open first experience accordion
   if (name === 'experience') {
     document.querySelectorAll('.exp-row.open').forEach(r => r.classList.remove('open'));
     const first = document.getElementById('exp-1');
     if (first) first.classList.add('open');
   }
-
-  // Smooth scroll to page content after brief paint delay
   if (name !== 'home') {
     setTimeout(() => {
       const page = target.querySelector('.page');
@@ -509,7 +503,169 @@ if (form) {
 }
 
 /* ──────────────────────────────────────
-   13. CV IFRAME FALLBACK
+   BLOG CANVAS ILLUSTRATIONS
+────────────────────────────────────── */
+function setupBC(id) {
+  const c = document.getElementById(id);
+  if (!c) return null;
+  const dpr = window.devicePixelRatio || 1;
+  c.width  = c.offsetWidth  * dpr;
+  c.height = c.offsetHeight * dpr;
+  const ctx = c.getContext('2d');
+  ctx.scale(dpr, dpr);
+  return { ctx, W: c.offsetWidth, H: c.offsetHeight };
+}
+
+function drawAllBlogCanvases() {
+  [['bc1',drawBC1],['bc2',drawBC2],['bc3',drawBC3],['bc4',drawBC4],['bc5',drawBC5]].forEach(([id,fn])=>{
+    const s = setupBC(id); if(s) fn(s.ctx, s.W, s.H);
+  });
+}
+
+// bc1: Phaser / game engine — colorful sprite grid
+function drawBC1(ctx, W, H) {
+  ctx.fillStyle='#050f07'; ctx.fillRect(0,0,W,H);
+  const cols=['#4ade80','#a78bfa','#38bdf8','#fbbf24','#f87171'];
+  for(let i=0;i<6;i++) for(let j=0;j<4;j++){
+    const x=18+i*(W-36)/5, y=22+j*(H-52)/3;
+    ctx.fillStyle=cols[(i+j)%5]+'33';
+    ctx.beginPath(); if(ctx.roundRect)ctx.roundRect(x,y,36,28,4); else ctx.rect(x,y,36,28);
+    ctx.fill(); ctx.strokeStyle=cols[(i+j)%5]+'88'; ctx.lineWidth=1; ctx.stroke();
+    ctx.fillStyle=cols[(i+j)%5]; ctx.font='11px JetBrains Mono,monospace'; ctx.textAlign='center';
+    ctx.fillText(['▲','●','■','★','◆'][((i*3+j)%5)], x+18, y+17);
+  }
+  ctx.textAlign='left';
+  ctx.fillStyle='rgba(74,222,128,.9)'; ctx.font='bold 11px JetBrains Mono,monospace';
+  ctx.fillText('PHASER.JS  GAME ENGINE  REMOTE ADS', 14, 16);
+  ctx.fillStyle='rgba(167,139,250,.6)'; ctx.font='10px JetBrains Mono,monospace';
+  ctx.fillText('CDN-loaded creative  no app update  runtime swap', 14, H-10);
+}
+
+// bc2: Windows vs Unix file locking — two column diagram
+function drawBC2(ctx, W, H) {
+  ctx.fillStyle='#0a0714'; ctx.fillRect(0,0,W,H);
+  const mid=W/2;
+  // Windows side
+  ctx.fillStyle='rgba(248,113,113,.07)'; ctx.fillRect(0,30,mid-1,H-30);
+  ctx.fillStyle='#f87171'; ctx.font='bold 11px JetBrains Mono,monospace'; ctx.textAlign='center';
+  ctx.fillText('WINDOWS / NTFS',mid/2,48);
+  ['HANDLE acquired','Mandatory lock','Other procs: BLOCKED','rename() fails','delete() fails'].forEach((t,i)=>{
+    ctx.fillStyle=i>1?'rgba(248,113,113,.8)':'rgba(255,255,255,.5)';
+    ctx.font='9.5px JetBrains Mono,monospace';
+    ctx.fillText(t,mid/2,68+i*22);
+  });
+  // Unix side
+  ctx.fillStyle='rgba(74,222,128,.07)'; ctx.fillRect(mid+1,30,mid-1,H-30);
+  ctx.fillStyle='#4ade80'; ctx.font='bold 11px JetBrains Mono,monospace';
+  ctx.fillText('UNIX / VFS',mid+mid/2,48);
+  ['open() returns fd','Inode ref count++','Other procs: OK','unlink() removes dentry','inode lives until fd=0'].forEach((t,i)=>{
+    ctx.fillStyle=i>1?'rgba(74,222,128,.8)':'rgba(255,255,255,.5)';
+    ctx.font='9.5px JetBrains Mono,monospace';
+    ctx.fillText(t,mid+mid/2,68+i*22);
+  });
+  ctx.strokeStyle='rgba(255,255,255,.08)'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(mid,30); ctx.lineTo(mid,H); ctx.stroke();
+  ctx.textAlign='left';
+  ctx.fillStyle='rgba(167,139,250,.9)'; ctx.font='bold 11px JetBrains Mono,monospace';
+  ctx.fillText('FILE LOCKING  WINDOWS vs UNIX', 14, 16);
+}
+
+// bc3: malloc internals — heap layout
+function drawBC3(ctx, W, H) {
+  ctx.fillStyle='#07111f'; ctx.fillRect(0,0,W,H);
+  const bx=18, by=30, bw=W-36;
+  // Memory layout blocks
+  const blocks=[
+    {l:'text / code',c:'rgba(74,222,128,.18)',bc:'#4ade8077',h:22},
+    {l:'BSS / data',c:'rgba(74,222,128,.12)',bc:'#4ade8055',h:18},
+    {l:'heap (brk)   →',c:'rgba(167,139,250,.2)',bc:'#a78bfa88',h:36},
+    {l:'  chunk [freed]',c:'rgba(167,139,250,.08)',bc:'#a78bfa33',h:18},
+    {l:'  chunk [in use]',c:'rgba(167,139,250,.22)',bc:'#a78bfaaa',h:22},
+    {l:'mmap region (large)',c:'rgba(56,189,248,.15)',bc:'#38bdf877',h:22},
+    {l:'stack           ←',c:'rgba(251,191,36,.18)',bc:'#fbbf2477',h:28},
+  ];
+  let y=by;
+  blocks.forEach(b=>{
+    ctx.fillStyle=b.c; ctx.fillRect(bx,y,bw,b.h);
+    ctx.strokeStyle=b.bc; ctx.lineWidth=1; ctx.strokeRect(bx,y,bw,b.h);
+    ctx.fillStyle='rgba(255,255,255,.7)'; ctx.font='9px JetBrains Mono,monospace'; ctx.textAlign='left';
+    ctx.fillText(b.l, bx+6, y+b.h/2+4); y+=b.h+2;
+  });
+  ctx.textAlign='left';
+  ctx.fillStyle='rgba(56,189,248,.9)'; ctx.font='bold 11px JetBrains Mono,monospace';
+  ctx.fillText('malloc()  LINUX HEAP LAYOUT', 14, 18);
+  ctx.fillStyle='rgba(167,139,250,.6)'; ctx.font='10px JetBrains Mono,monospace';
+  ctx.fillText('brk() for small  mmap() for large  glibc ptmalloc', 14, H-10);
+}
+
+// bc4: random_device — entropy sources diagram
+function drawBC4(ctx, W, H) {
+  ctx.fillStyle='#050a14'; ctx.fillRect(0,0,W,H);
+  // Central circle: kernel entropy pool
+  const cx=W*0.42, cy=H*0.5, r=48;
+  ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2);
+  ctx.fillStyle='rgba(167,139,250,.15)'; ctx.fill();
+  ctx.strokeStyle='rgba(167,139,250,.5)'; ctx.lineWidth=1.5; ctx.stroke();
+  ctx.fillStyle='#a78bfa'; ctx.font='bold 9px JetBrains Mono,monospace'; ctx.textAlign='center';
+  ctx.fillText('KERNEL',cx,cy-5); ctx.fillText('ENTROPY',cx,cy+7); ctx.fillText('POOL',cx,cy+19);
+  // Inputs
+  [['IRQ noise',45],['disk timing',135],['network',225],['CPU jitter',315]].forEach(([lbl,deg])=>{
+    const a=deg*Math.PI/180, ix=cx+Math.cos(a)*(r+50), iy=cy+Math.sin(a)*(r+50);
+    ctx.beginPath(); ctx.moveTo(cx+Math.cos(a)*r,cy+Math.sin(a)*r); ctx.lineTo(ix,iy);
+    ctx.strokeStyle='rgba(56,189,248,.35)'; ctx.lineWidth=1; ctx.setLineDash([3,3]); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle='rgba(56,189,248,.7)'; ctx.font='8.5px JetBrains Mono,monospace';
+    ctx.fillText(lbl,ix,iy); 
+  });
+  // Output
+  ctx.beginPath(); ctx.moveTo(cx+r,cy); ctx.lineTo(W*0.82,cy);
+  ctx.strokeStyle='#4ade8077'; ctx.lineWidth=1.5; ctx.stroke();
+  ctx.fillStyle='#4ade80'; ctx.font='9px JetBrains Mono,monospace'; ctx.textAlign='left';
+  ctx.fillText('/dev/urandom',W*0.83,cy-5); ctx.fillText('(CSPRNG)',W*0.83,cy+8);
+  ctx.textAlign='left';
+  ctx.fillStyle='rgba(167,139,250,.9)'; ctx.font='bold 11px JetBrains Mono,monospace';
+  ctx.fillText('std::random_device()  ENTROPY SOURCES', 14, 18);
+  ctx.fillStyle='rgba(56,189,248,.6)'; ctx.font='10px JetBrains Mono,monospace';
+  ctx.fillText('Linux: /dev/urandom  Windows: BCryptGenRandom', 14, H-10);
+}
+
+// bc5: TPM / BFU — boot sequence diagram
+function drawBC5(ctx, W, H) {
+  ctx.fillStyle='#070714'; ctx.fillRect(0,0,W,H);
+  const steps=[
+    {l:'Power on',c:'#888',y:38},
+    {l:'Bootloader',c:'#888',y:72},
+    {l:'Kernel loads',c:'#888',y:106},
+    {l:'BFU state',c:'#f87171',y:140},
+    {l:'Passcode entered',c:'#fbbf24',y:174},
+    {l:'KEK derived',c:'#a78bfa',y:208},
+    {l:'Volume keys unsealed',c:'#38bdf8',y:242},
+    {l:'AFU state  Face ID OK',c:'#4ade80',y:276},
+  ];
+  const sx=40, ey=steps[steps.length-1].y;
+  ctx.strokeStyle='rgba(255,255,255,.1)'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(sx,steps[0].y); ctx.lineTo(sx,ey); ctx.stroke();
+  steps.forEach(s=>{
+    ctx.beginPath(); ctx.arc(sx,s.y,6,0,Math.PI*2);
+    ctx.fillStyle=s.c; ctx.fill();
+    ctx.fillStyle=s.c; ctx.font='10px JetBrains Mono,monospace'; ctx.textAlign='left';
+    ctx.fillText(s.l, sx+14, s.y+4);
+  });
+  // Lock icon
+  ctx.fillStyle='rgba(248,113,113,.2)';
+  ctx.fillRect(W-70,H*0.3,44,52);
+  ctx.strokeStyle='#f87171'; ctx.lineWidth=1.5; ctx.strokeRect(W-70,H*0.3,44,52);
+  ctx.beginPath(); ctx.arc(W-48,H*0.3,14,Math.PI,0); ctx.strokeStyle='#f87171'; ctx.stroke();
+  ctx.fillStyle='#f87171'; ctx.font='9px JetBrains Mono,monospace'; ctx.textAlign='center';
+  ctx.fillText('BFU',W-48,H*0.3+36);
+  ctx.textAlign='left';
+  ctx.fillStyle='rgba(167,139,250,.9)'; ctx.font='bold 11px JetBrains Mono,monospace';
+  ctx.fillText('TPM  BEFORE FIRST UNLOCK  BOOT SEQUENCE', 14, 18);
+  ctx.fillStyle='rgba(248,113,113,.7)'; ctx.font='10px JetBrains Mono,monospace';
+  ctx.fillText('Biometrics need KEK in memory  reboot clears it', 14, H-10);
+}
+
+/* ──────────────────────────────────────
+   CV IFRAME FALLBACK
 ────────────────────────────────────── */
 const cvi = document.getElementById('cv-iframe');
 if (cvi) cvi.addEventListener('error', () => cvi.classList.add('error'));
